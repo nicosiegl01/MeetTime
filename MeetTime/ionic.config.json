@@ -1,0 +1,7 @@
+{
+  "name": "MeetTime",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
