@@ -10,7 +10,7 @@ Partymaster soll in dieser schweren Zeit Personen verbinden. Egal ob schüchtern
 - Quiz zur Bestimmung der Hobbies
 - Game für Coins (nur wenn noch Zeit besteht)
 - Voll bearbeitbares Profil
-- Alle Identitäten in einer Datenbank
+- Funktionierende Datenbank
 - Modernes Frontend
 - Bugfreies Backend
 - Hobbykarte
