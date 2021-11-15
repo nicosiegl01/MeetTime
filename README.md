@@ -18,7 +18,7 @@ Partymaster soll in dieser schweren Zeit Personen verbinden. Egal ob schüchtern
 - Chat
 
 ## Projektbeteiligte
-- Nico Siegel
+- Nico Siegl
 - Manuel Neidhart
 - Mia Mandel
 - Elias Ganglberger
