@@ -1,4 +1,4 @@
-# PartyMaster
+# **PartyMaster / Meettime**
 
 ## Projektbeschreibung
 
