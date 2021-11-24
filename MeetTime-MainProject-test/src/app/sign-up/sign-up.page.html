@@ -1,0 +1,62 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>SignUp</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen class="ion-padding" scroll-y="false">
+  <ion-slides>
+    <ion-slide>
+      <ion-text>
+        <h1 id="h1">Sign Up</h1>
+      </ion-text>
+      <div class="slide">
+        <ion-item class="label">
+          <ion-label for="email">E-Mail:</ion-label>
+          <ion-input id="email"></ion-input>
+        </ion-item>
+        <ion-item class="label">
+          <ion-label>Confirm E-Mail:</ion-label>
+          <ion-input id="confirmEmail"></ion-input>
+        </ion-item>
+        <ion-item class="label">
+          <ion-label>Password:</ion-label>
+          <ion-input id="password" type="password"></ion-input>
+        </ion-item>  
+        <ion-item class="label">
+          <ion-label>Confirm Password:</ion-label>
+          <ion-input id="confirmPassword"  type="password"></ion-input>
+        </ion-item>
+      </div>
+    </ion-slide>
+    <ion-slide>
+      <ion-text>
+        <h1 id="h1">Sign Up</h1>
+      </ion-text>
+      <ion-item class="label">
+        <ion-label>Firstname:</ion-label>
+        <ion-input></ion-input>
+      </ion-item>
+      <ion-item class="label">
+        <ion-label>Lastname:</ion-label>
+        <ion-input></ion-input>
+      </ion-item>
+      <ion-item class="label">
+        <ion-label>Gender:</ion-label>
+        <ion-select value="notifications" interface="action-sheet">
+          <ion-select-option value="enable">Male</ion-select-option>
+          <ion-select-option value="mute">Femal</ion-select-option>
+          <ion-select-option value="mute_undefined">Undefined</ion-select-option>
+        </ion-select>
+      </ion-item> 
+      <ion-item class="label">
+        <ion-label>Age:</ion-label>
+        <ion-input id="age" type="number"></ion-input>
+      </ion-item>
+      <ion-text>
+        <p id="errorWarning"></p>
+      </ion-text>
+      <ion-button id="buttonSignUp"(click)="SignUp()">Sign-Up</ion-button>
+    </ion-slide>
+  </ion-slides>
+</ion-content>
