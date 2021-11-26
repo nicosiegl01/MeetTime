@@ -1,9 +1,8 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Mainpage</ion-title>
   </ion-toolbar>
 </ion-header>
-
+  
 <ion-content>
   <ion-card>
   <ion-card-header>
@@ -13,7 +12,10 @@
   </ion-card-header>
 
   <ion-card-content>
-    I want to find someone .........
+    <div id="descriptionBox">
+      I want to find someone .........
+    </div>
+    <br><br>
 
     <ion-chip>
       <ion-label color="success">Football</ion-label>
@@ -31,4 +33,19 @@
 <!-- <ion-button id="dislike" class="buttonMain" color="danger" (click)="LikePerson()">Dislike</ion-button>
 <ion-button id="like" class="buttonMain" color="success" (click)="DisLikePerson()">Like</ion-button> -->
 </ion-content>
+<ion-tabs>
+  <ion-tab-bar slot="bottom">
+    <ion-tab-button tab="schedule">
+      <ion-icon name="calendar"></ion-icon>
+    </ion-tab-button>
+
+    <ion-tab-button tab="map">
+      <ion-icon name="map"></ion-icon>
+    </ion-tab-button>
+
+    <ion-tab-button tab="about">
+      <ion-icon name="contact"></ion-icon>
+    </ion-tab-button>
+  </ion-tab-bar>
+</ion-tabs>
 

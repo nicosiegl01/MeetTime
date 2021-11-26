@@ -27,6 +27,10 @@ const routes: Routes = [
     path: 'mainpage',
     loadChildren: () => import('./mainpage/mainpage.module').then( m => m.MainpagePageModule)
   },
+  {
+    path: 'profil-einstellungen',
+    loadChildren: () => import('./profil-einstellungen/profil-einstellungen.module').then( m => m.ProfilEinstellungenPageModule)
+  },
 ];
 
 @NgModule({

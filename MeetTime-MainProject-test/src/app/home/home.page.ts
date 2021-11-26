@@ -16,9 +16,9 @@ export class HomePage {
     // }, 800);
     const testIntervall = setInterval(() => {
       this.router.navigate(['login-or-sign-up']);
-    }, 3000);
+    }, 1500);
 
     let n: ReturnType<typeof setTimeout>;
-    n = setTimeout(()=>clearInterval(testIntervall), 3000);
+    n = setTimeout(()=>clearInterval(testIntervall), 1500);
   }
 }
