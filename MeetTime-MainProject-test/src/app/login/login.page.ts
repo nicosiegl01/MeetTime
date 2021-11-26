@@ -33,18 +33,12 @@ export class LoginPage implements OnInit {
   Login(){
     let emailValue = (<HTMLInputElement>document.getElementById("email")).value;
     let password = (<HTMLInputElement>document.getElementById("password")).value;
-    let password2 = (<HTMLInputElement>document.getElementById("password2")).value;
     let isAllowedToSwitch = true;
     let userExists = true;
 
-    /*
-      Hier Datenbankabfrage ob es die Email überhaupt gibt
+    /*  Hier Datenbankabfrage ob es die Email überhaupt gibt
       Danach überprüfen ob das passwort und die email übereinstimmen
     */
-
-    if(password != password2){
-      this.presentAlert('You typed in different passwords!');
-    }
 
     if(!userExists){
       this.presentAlert('This E-Mail adress is unknown!')
@@ -54,10 +48,15 @@ export class LoginPage implements OnInit {
       this.presentAlert('E-Mail and password do not match!')
     }
 
+    this.switchView(true)
     if(isAllowedToSwitch){
-      this.router.navigate(['MainPage']);
+      this.switchView(true)
     }
 
+  }
+
+  switchView(allowed){
+    this.router.navigate(['mainpage']);
   }
 
 }
