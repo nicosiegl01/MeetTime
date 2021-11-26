@@ -16,31 +16,24 @@ export class SignUpPage implements OnInit {
     let confirmPassword = (<HTMLInputElement>document.getElementById("confirmPassword")).value;
     const age = Number((<HTMLInputElement>document.getElementById("age")).value);
 
-    if (emailValue == emailValue2 && emailValue != "" && emailValue2 != "") {
-      document.querySelector("#errorWarning").innerHTML = "Email confirmed";
-    }
-    else if (password == confirmPassword && password != "" && confirmPassword != "" && emailValue != emailValue2 || emailValue == "" || emailValue2 == "") {
-      alert("Wrong email");
+    if (password == confirmPassword && password != "" && confirmPassword != "" && emailValue != emailValue2 || emailValue == "" || emailValue2 == "") {
       document.querySelector("#errorWarning").innerHTML = "Wrong email";
     }
     else if (emailValue != emailValue2) {
-      alert("Wrong email");
+      document.querySelector("#errorWarning").innerHTML = "Wrong email";
     }
-
-    if (password == confirmPassword && password != "" && confirmPassword != "") {
-      alert("Password confirmed");
-      password
-    }
-    else if (emailValue == emailValue2 && emailValue != "" && emailValue2 != "" && password != confirmPassword || password == "" || confirmPassword == "") {
-      alert("Wrong password");
+    if (emailValue == emailValue2 && emailValue != "" && emailValue2 != "" && password != confirmPassword || password == "" || confirmPassword == "") {
+      document.querySelector("#errorWarning").innerHTML = "Wrong password";
     }
     else if (password != confirmPassword) {
-      alert("Wrong password");
+      document.querySelector("#errorWarning").innerHTML = "Wrong password";
     }
     if (age < 18) {
-      alert("You are to young");
+      document.querySelector("#errorWarning").innerHTML = "You are to young";
     }
-
+    if(emailValue == emailValue2 && emailValue != "" && emailValue2 != "" && password == confirmPassword && password != "" && confirmPassword != "" && age >= 18){
+      alert("You are in");
+    }
   }
 
   ngOnInit() {

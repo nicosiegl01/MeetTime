@@ -55,7 +55,7 @@ export class LoginPage implements OnInit {
     }
 
     if(isAllowedToSwitch){
-      this.router.navigate(['mainPage']);
+      this.router.navigate(['MainPage']);
     }
 
   }
