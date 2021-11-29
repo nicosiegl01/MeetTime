@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-mainpage',
@@ -7,13 +8,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MainpagePage implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router) {
+    this.router = router;
+  }
 
   Login(){
     
   }
 
+  switchToContactPage(){
+    this.router.navigate(['profil-einstellungen']);
+  }
+
   ngOnInit() {
+    
   }
 
 }

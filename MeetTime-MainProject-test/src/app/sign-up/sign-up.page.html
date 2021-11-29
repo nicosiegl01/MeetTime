@@ -1,13 +1,8 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>SignUp</ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content fullscreen class="ion-padding" scroll-y="false">
   <ion-slides>
     <ion-slide>
       <ion-text>
+        <div class="circle1"></div>
         <h1 id="h1">Sign Up</h1>
       </ion-text>
       <div class="slide">
@@ -15,18 +10,26 @@
           <ion-label for="email"></ion-label>
           <ion-input id="email" placeholder="E-Mail"></ion-input>
         </ion-item>
+
+        <br>
+        <div class="circle2"></div>
+
         <ion-item class="label">
           <ion-label></ion-label>
           <ion-input id="confirmEmail" placeholder="Confirm E-Mail"></ion-input>
         </ion-item>
+        <br>
         <ion-item class="label">
           <ion-label></ion-label>
           <ion-input id="password" placeholder="Password" type="password"></ion-input>
         </ion-item>  
+        <br>
         <ion-item class="label">
           <ion-label></ion-label>
           <ion-input id="confirmPassword" placeholder="Confirm Password" type="password"></ion-input>
         </ion-item>
+        <div class="circle3"></div>
+      <ion-button color="danger" (click)="SwitchToPage2()">Sign-Up</ion-button>
       </div>
     </ion-slide>
     <ion-slide>
@@ -44,11 +47,9 @@
       <ion-item class="label">
         <ion-label>Sex</ion-label>
         <ion-select value="notifications" placeholder = "Choose" interface="action-sheet">
-          <ion-select-option value="enable">with EderEderEderEder</ion-select-option>
           <ion-select-option value="mute">Female</ion-select-option>
-          <ion-select-option value="mute_undefined">Nil</ion-select-option>
-          <ion-select-option value="mute_undefined">diverse</ion-select-option>
-          <ion-select-option value="mute_undefined">Martin</ion-select-option>
+          <ion-select-option value="mute_undefined">Male</ion-select-option>
+          <ion-select-option value="mute_undefined">Diverse</ion-select-option>
         </ion-select>
       </ion-item> 
       <ion-item class="label">

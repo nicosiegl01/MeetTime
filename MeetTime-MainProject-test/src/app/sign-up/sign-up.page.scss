@@ -1,23 +1,55 @@
+
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap');
+
 ion-content {
     --ion-background-color: #ffffff;
+}
+
+ion-button{
+  --ion-color-danger: #8AA1B1;
+  bottom: 0;
+  width: 100%;
+}
+
+
+
+#test001{
+  background-color: red;
 }
 
 #h1{
     color: #000;
     font-weight: bold;
-    letter-spacing: 2px;
     text-align: center;
     margin-top: 10%;
-    font-size: 290%;
-    margin-bottom: 30%;
+    font-size: 200%;
+    margin-bottom: 10%;
+    font-family: 'Poppins', sans-serif;
 }
 
 .label{
     width: 90%;
     border-radius: 3px;
-    background-color: rgba(255, 255, 255, 1);
     margin-top: 2%;
     margin-left: 5%;
+}
+
+#email{
+
+}
+
+#save{
+
+  position: absolute;
+  font-family: 'Poppins';
+  width:90%;
+  bottom:0;
+  left:0;
+  margin-left:5%;
+  border-radius: 5px;
+  padding:7%;
+  background-color: #8AA1B1;
 }
 
 ion-slides {
@@ -61,3 +93,39 @@ ion-slides {
   #errorWarning{
     color: rgb(172, 50, 50);
   }
+
+
+
+
+
+
+.circle1 {
+    position: absolute;
+    z-index: -1;
+    background: #8AA1B1;
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+}
+
+.circle2 {
+  position: absolute;
+  z-index: -1;
+  background: #8DBEFF;
+  border-radius: 60%;
+  width: 150px;
+  height: 150px;
+  right: 0;
+  margin-top:-30%;
+}
+
+.circle3 {
+  position: absolute;
+  z-index: -1;
+  background: #FFCB47;
+  border-radius: 60%;
+  width: 150px;
+  height: 150px;
+  margin-top:-30%;
+  left: 20;
+}

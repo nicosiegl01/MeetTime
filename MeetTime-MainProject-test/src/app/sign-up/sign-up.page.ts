@@ -39,4 +39,8 @@ export class SignUpPage implements OnInit {
   ngOnInit() {
   }
 
+  SwitchToPage2(){
+    
+  }
+
 }
