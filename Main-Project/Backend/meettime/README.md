@@ -15,4 +15,4 @@ Exportcommand
 
 - ./mvnw package
 - docker build -f src/main/docker/Dockerfile.jvm -t quarkus/meettime-jvm . 
-- docker run --name meettime-backend -d -i --rm -p 80:80 quarkus/meettime-jvm
+- docker run --name meettime-backend -d -i --rm -p 8080:8080 quarkus/meettime-jvm

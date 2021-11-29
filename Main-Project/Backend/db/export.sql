@@ -8,22 +8,6 @@ SET client_encoding = 'UTF8';
 SET standard_conforming_strings = on;
 
 --
--- Drop databases (except postgres and template1)
---
-
-DROP DATABASE "Meettime";
-
-
-
-
---
--- Drop roles
---
-
-DROP ROLE meettime;
-
-
---
 -- Roles
 --
 
@@ -43,6 +27,8 @@ ALTER ROLE meettime WITH SUPERUSER INHERIT CREATEROLE CREATEDB LOGIN REPLICATION
 -- Database "template1" dump
 --
 
+\connect template1
+
 --
 -- PostgreSQL database dump
 --
@@ -60,65 +46,6 @@ SET check_function_bodies = false;
 SET xmloption = content;
 SET client_min_messages = warning;
 SET row_security = off;
-
-UPDATE pg_catalog.pg_database SET datistemplate = false WHERE datname = 'template1';
-DROP DATABASE template1;
---
--- Name: template1; Type: DATABASE; Schema: -; Owner: meettime
---
-
-CREATE DATABASE template1 WITH TEMPLATE = template0 ENCODING = 'UTF8' LOCALE = 'en_US.utf8';
-
-
-ALTER DATABASE template1 OWNER TO meettime;
-
-\connect template1
-
-SET statement_timeout = 0;
-SET lock_timeout = 0;
-SET idle_in_transaction_session_timeout = 0;
-SET client_encoding = 'UTF8';
-SET standard_conforming_strings = on;
-SELECT pg_catalog.set_config('search_path', '', false);
-SET check_function_bodies = false;
-SET xmloption = content;
-SET client_min_messages = warning;
-SET row_security = off;
-
---
--- Name: DATABASE template1; Type: COMMENT; Schema: -; Owner: meettime
---
-
-COMMENT ON DATABASE template1 IS 'default template for new databases';
-
-
---
--- Name: template1; Type: DATABASE PROPERTIES; Schema: -; Owner: meettime
---
-
-ALTER DATABASE template1 IS_TEMPLATE = true;
-
-
-\connect template1
-
-SET statement_timeout = 0;
-SET lock_timeout = 0;
-SET idle_in_transaction_session_timeout = 0;
-SET client_encoding = 'UTF8';
-SET standard_conforming_strings = on;
-SELECT pg_catalog.set_config('search_path', '', false);
-SET check_function_bodies = false;
-SET xmloption = content;
-SET client_min_messages = warning;
-SET row_security = off;
-
---
--- Name: DATABASE template1; Type: ACL; Schema: -; Owner: meettime
---
-
-REVOKE CONNECT,TEMPORARY ON DATABASE template1 FROM PUBLIC;
-GRANT CONNECT ON DATABASE template1 TO PUBLIC;
-
 
 --
 -- PostgreSQL database dump complete
@@ -193,8 +120,8 @@ SET default_table_access_method = heap;
 --
 
 CREATE TABLE "Meettime"."Interest" (
-    "Id" numeric(8,0) NOT NULL,
-    "Name" character varying(32)[] NOT NULL
+    "Id" integer NOT NULL,
+    "Name" character varying(32) NOT NULL
 );
 
 
@@ -205,8 +132,8 @@ ALTER TABLE "Meettime"."Interest" OWNER TO meettime;
 --
 
 CREATE TABLE "Meettime"."Match" (
-    "selectedUserId" numeric(8,0) NOT NULL,
-    "selectingUserId" numeric(8,0) NOT NULL
+    "selectedUserId" integer NOT NULL,
+    "selectingUserId" integer NOT NULL
 );
 
 
@@ -217,11 +144,11 @@ ALTER TABLE "Meettime"."Match" OWNER TO meettime;
 --
 
 CREATE TABLE "Meettime"."User" (
-    id numeric(8,0) NOT NULL,
-    fname character varying(32)[] NOT NULL,
-    lname character varying(32)[] NOT NULL,
-    email character varying(32)[] NOT NULL,
-    password character varying(64)[] NOT NULL
+    id integer NOT NULL,
+    fname character varying(32) NOT NULL,
+    lname character varying(32) NOT NULL,
+    email character varying(32) NOT NULL,
+    password character varying(64) NOT NULL
 );
 
 
@@ -232,12 +159,67 @@ ALTER TABLE "Meettime"."User" OWNER TO meettime;
 --
 
 CREATE TABLE "Meettime"."User_Interest" (
-    "UserId" numeric(8,0) NOT NULL,
-    "InterestId" numeric(8,0) NOT NULL
+    "UserId" integer NOT NULL,
+    "InterestId" integer NOT NULL
 );
 
 
 ALTER TABLE "Meettime"."User_Interest" OWNER TO meettime;
+
+--
+-- Name: User_id_seq; Type: SEQUENCE; Schema: Meettime; Owner: meettime
+--
+
+ALTER TABLE "Meettime"."User" ALTER COLUMN id ADD GENERATED ALWAYS AS IDENTITY (
+    SEQUENCE NAME "Meettime"."User_id_seq"
+    START WITH 2
+    INCREMENT BY 1
+    MINVALUE 2
+    MAXVALUE 1000000
+    CACHE 1
+);
+
+
+--
+-- Data for Name: Interest; Type: TABLE DATA; Schema: Meettime; Owner: meettime
+--
+
+COPY "Meettime"."Interest" ("Id", "Name") FROM stdin;
+\.
+
+
+--
+-- Data for Name: Match; Type: TABLE DATA; Schema: Meettime; Owner: meettime
+--
+
+COPY "Meettime"."Match" ("selectedUserId", "selectingUserId") FROM stdin;
+\.
+
+
+--
+-- Data for Name: User; Type: TABLE DATA; Schema: Meettime; Owner: meettime
+--
+
+COPY "Meettime"."User" (id, fname, lname, email, password) FROM stdin;
+1	Elias	Gangelberger	elias.gangelberger@gmail.com	MeinPassword
+2	nico	siegl	nicosiegl@gmail.com	Meinpasswort
+\.
+
+
+--
+-- Data for Name: User_Interest; Type: TABLE DATA; Schema: Meettime; Owner: meettime
+--
+
+COPY "Meettime"."User_Interest" ("UserId", "InterestId") FROM stdin;
+\.
+
+
+--
+-- Name: User_id_seq; Type: SEQUENCE SET; Schema: Meettime; Owner: meettime
+--
+
+SELECT pg_catalog.setval('"Meettime"."User_id_seq"', 2, true);
+
 
 --
 -- Name: Interest InterestId; Type: CONSTRAINT; Schema: Meettime; Owner: meettime
@@ -295,6 +277,8 @@ ALTER TABLE ONLY "Meettime"."User_Interest"
 -- Database "postgres" dump
 --
 
+\connect postgres
+
 --
 -- PostgreSQL database dump
 --
@@ -312,36 +296,6 @@ SET check_function_bodies = false;
 SET xmloption = content;
 SET client_min_messages = warning;
 SET row_security = off;
-
-DROP DATABASE postgres;
---
--- Name: postgres; Type: DATABASE; Schema: -; Owner: meettime
---
-
-CREATE DATABASE postgres WITH TEMPLATE = template0 ENCODING = 'UTF8' LOCALE = 'en_US.utf8';
-
-
-ALTER DATABASE postgres OWNER TO meettime;
-
-\connect postgres
-
-SET statement_timeout = 0;
-SET lock_timeout = 0;
-SET idle_in_transaction_session_timeout = 0;
-SET client_encoding = 'UTF8';
-SET standard_conforming_strings = on;
-SELECT pg_catalog.set_config('search_path', '', false);
-SET check_function_bodies = false;
-SET xmloption = content;
-SET client_min_messages = warning;
-SET row_security = off;
-
---
--- Name: DATABASE postgres; Type: COMMENT; Schema: -; Owner: meettime
---
-
-COMMENT ON DATABASE postgres IS 'default administrative connection database';
-
 
 --
 -- PostgreSQL database dump complete
