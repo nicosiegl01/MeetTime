@@ -6,10 +6,42 @@ ion-content {
     --ion-background-color: #ffffff;
 }
 
+ion-input{
+  --background: rgba(0,0,0,0);
+  --color: black;
+  --padding-bottom:0;
+  --padding-end:0;
+  --padding-start:0;
+  --padding-top:0;
+  --margin:0;
+  padding-top:0;
+  width:100%;
+  border-radius:0px;
+
+}
+
+ion-input::placeholder{
+  left:0;
+}
+
 ion-button{
-  --ion-color-danger: #8AA1B1;
+  --ion-color-danger: #66a8ff;
   bottom: 0;
-  width: 100%;
+  left:0;
+  width: 95%;
+  margin-top: 60%;
+  position: absolute;
+}
+
+ion-label{
+
+}
+
+.buttonSignUp{
+}
+
+#SignUpBtn{
+  margin-top: 54.5%;
 }
 
 
@@ -33,6 +65,21 @@ ion-button{
     border-radius: 3px;
     margin-top: 2%;
     margin-left: 5%;
+    color:gray;
+
+    --background:white;
+    --border-radius: 0px;
+    --border:1px solid black;
+}
+
+.label:hover{
+  width: 90%;
+  border-radius: 3px;
+  margin-top: 2%;
+  margin-left: 5%;
+  color:gray;
+  --border-radius: 0px;
+  --border:1px solid black;
 }
 
 #email{
@@ -43,7 +90,7 @@ ion-button{
 
   position: absolute;
   font-family: 'Poppins';
-  width:90%;
+  width:70%;
   bottom:0;
   left:0;
   margin-left:5%;
@@ -51,6 +98,8 @@ ion-button{
   padding:7%;
   background-color: #8AA1B1;
 }
+
+
 
 ion-slides {
     height: 100%;
@@ -92,13 +141,14 @@ ion-slides {
 
   #errorWarning{
     color: rgb(172, 50, 50);
+    z-index: -1;
   }
 
 
 
 
 
-
+/*
 .circle1 {
     position: absolute;
     z-index: -1;
@@ -129,3 +179,4 @@ ion-slides {
   margin-top:-30%;
   left: 20;
 }
+*/

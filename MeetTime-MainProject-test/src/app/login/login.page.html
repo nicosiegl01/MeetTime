@@ -1,22 +1,18 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>Login</ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content fullscreen class="ion-padding" scroll-y="false">
   <ion-slides>
     <ion-slide>
       <ion-text>
-        <h1 id="h1">LOGIN</h1>
+        <h1 id="h1">Login</h1>
       </ion-text>
       <div class="slide">
         <ion-item class="label">
-          <ion-input placeholder="E-Mail" type="mail" id="email"></ion-input>
+          <ion-label for="email"></ion-label>
+          <ion-input id="email" type="mail" placeholder="E-Mail"></ion-input>
         </ion-item>
         <ion-item class="label">
-          <ion-input placeholder="Password" id="password"></ion-input>
-        </ion-item>  
+          <ion-label for="password"></ion-label>
+          <ion-input id="password" type="Password" placeholder="Password"></ion-input>
+        </ion-item>
       </div>
       <ion-button id="buttonSignUp" (click)="Login()">Login</ion-button>
     </ion-slide>

@@ -1,25 +1,66 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap');
+
 ion-content {
     --ion-background-color: #ffffff;
+}
+
+ion-button{
+  --ion-color-danger: #66a8ff;
+  bottom: 0;
+  left:0;
+  width: 95%;
+  margin-top: 60%;
+  position: absolute;
+}
+
+ion-label{
+
+}
+
+.buttonSignUp{
+}
+
+#SignUpBtn{
+  margin-top: 54.5%;
+}
+
+
+
+#test001{
+  background-color: red;
 }
 
 #h1{
     color: #000;
     font-weight: bold;
-    letter-spacing: 2px;
     text-align: center;
     margin-top: 10%;
-    font-size: 290%;
-    margin-bottom: 30%;
+    font-size: 200%;
+    margin-bottom: 10%;
+    font-family: 'Poppins', sans-serif;
 }
 
 .label{
-    width: 90%;
-    border-radius: 3px;
-    background-color: rgba(255, 255, 255, 1);
-    margin-top: 2%;
-    margin-left: 5%;
+  width: 90%;
+  border-radius: 3px;
+  margin-top: 2%;
+  margin-left: 5%;
+  color:gray;
+
+  --background:white;
+  --border-radius: 0px;
+  --border:1px solid black;
 }
 
+.label:hover{
+width: 90%;
+border-radius: 3px;
+margin-top: 2%;
+margin-left: 5%;
+color:gray;
+--border-radius: 0px;
+--border:1px solid black;
+}
 ion-slides {
     height: 100%;
   }

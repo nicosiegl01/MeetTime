@@ -29,7 +29,7 @@
           <ion-input id="confirmPassword" placeholder="Confirm Password" type="password"></ion-input>
         </ion-item>
         <div class="circle3"></div>
-      <ion-button color="danger" (click)="SwitchToPage2()">Sign-Up</ion-button>
+      <ion-button class="buttonSignUp" color="danger" (click)="SwitchToPage2()">Next Page</ion-button>
       </div>
     </ion-slide>
     <ion-slide>
@@ -40,26 +40,33 @@
         <ion-label></ion-label>
         <ion-input placeholder="Firstname"></ion-input>
       </ion-item>
+      <br>
+
       <ion-item class="label">
         <ion-label></ion-label>
         <ion-input placeholder="Lastname"></ion-input>
       </ion-item>
+      <br>
+
       <ion-item class="label">
         <ion-label>Sex</ion-label>
         <ion-select value="notifications" placeholder = "Choose" interface="action-sheet">
-          <ion-select-option value="mute">Female</ion-select-option>
-          <ion-select-option value="mute_undefined">Male</ion-select-option>
-          <ion-select-option value="mute_undefined">Diverse</ion-select-option>
+          <ion-select-option value="mute_female">Female</ion-select-option>
+          <ion-select-option value="mute_male">Male</ion-select-option>
+          <ion-select-option value="mute_different">Divers</ion-select-option>
         </ion-select>
       </ion-item> 
+      <br>
+
       <ion-item class="label">
         <ion-label></ion-label>
-        <ion-input id="age" type="number" placeholder="age"></ion-input>
+        <ion-input id="age" type="number" placeholder="Age"></ion-input>
+        <br>
       </ion-item>
       <ion-text>
         <p id="errorWarning"></p>
       </ion-text>
-      <ion-button id="buttonSignUp"(click)="SignUp()">Sign-Up</ion-button>
+      <ion-button id="SignUpBtn" class="buttonSignUp" color="danger" (click)="SignUp()">Sign-Up</ion-button>
     </ion-slide>
   </ion-slides>
 </ion-content>
