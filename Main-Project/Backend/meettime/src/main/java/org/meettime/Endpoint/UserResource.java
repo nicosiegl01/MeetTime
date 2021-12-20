@@ -9,14 +9,13 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.util.List;
-import java.util.UUID;
 
 @ApplicationScoped
 @Path("/user")
 public class UserResource {
 
     @Inject
-    private UserRepository repo;
+    UserRepository repo;
 
     public UserResource(UserRepository repo) {
         this.repo = repo;
@@ -56,15 +55,22 @@ public class UserResource {
         return repo.login(email, password);
     }
 
+    @DELETE
+    @Path("/delete/{id}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Integer deleteUser(@PathParam("id") String id) throws Exception {
+        repo.deleteUser(id);
+        return 1;
+    }
 
     @POST
-    @Path("/{fname}/{lname}/{email}/{password}")
+    @Path("/{fname}/{lname}/{email}/{password}/{age}")
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response addUser(@PathParam("fname") String fname,
+    public Integer addUser(@PathParam("fname") String fname,
                             @PathParam("lname") String lname,
                             @PathParam("email") String email,
-                            @PathParam("password") String password) throws Exception {
-        repo.addUser(new User(fname,lname,email,password));
-        return Response.ok().build();
+                            @PathParam("password") String password,
+                            @PathParam("age") String age) throws Exception {
+        return repo.addUser(new User(fname,lname,email,password,Integer.parseInt(age)));
     }
 }

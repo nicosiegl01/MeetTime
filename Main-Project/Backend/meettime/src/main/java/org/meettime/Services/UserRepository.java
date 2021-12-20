@@ -1,6 +1,5 @@
 package org.meettime.Services;
 
-import io.agroal.api.AgroalDataSource;
 import org.meettime.Model.User;
 
 import javax.enterprise.context.ApplicationScoped;
@@ -8,7 +7,6 @@ import javax.sql.DataSource;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 @ApplicationScoped
 public class UserRepository {
@@ -20,9 +18,9 @@ public class UserRepository {
     }
 
     public User findById(String id) throws Exception {
-        final String sql = "select id, fname, lname, email, password" +
+        final String sql = "select id, fname, lname, email, password, age" +
                 " from \"Meettime\".\"Meettime\".\"User\" " +
-                "where id = 1";
+                "where id = " + id + ";";
 
         try (Connection connection = dataSource.getConnection();
             PreparedStatement statement = connection.prepareStatement(sql)) {
@@ -33,7 +31,8 @@ public class UserRepository {
                            resultSet.getString("fname"),
                            resultSet.getString("lname"),
                            resultSet.getString("email"),
-                           resultSet.getString("password")
+                           resultSet.getString("password"),
+                           Integer.parseInt(resultSet.getString("age"))
                    );
                 }
             }
@@ -43,10 +42,22 @@ public class UserRepository {
         return null;
     }
 
+    public Integer deleteUser(String id) throws Exception {
+        final String sql = "delete from \"Meettime\".\"Meettime\".\"User\"" +
+                "where id = " + id + ";";
+
+        try (Connection connection = dataSource.getConnection();
+             PreparedStatement statement = connection.prepareStatement(sql)) {
+             return statement.executeUpdate();
+        } catch (SQLException e) {
+            throw new Exception(e);
+        }
+    }
+
     public User findByEmail(String mail) throws Exception {
-        final String sql = "select id, fname, lname, email, password" +
+        final String sql = "select id, fname, lname, email, password, age" +
                 " from \"Meettime\".\"Meettime\".\"User\" " +
-                "where mail = " + mail + ";";
+                "where email = '" + mail + "';";
 
         try (Connection connection = dataSource.getConnection();
              PreparedStatement statement = connection.prepareStatement(sql)) {
@@ -57,7 +68,8 @@ public class UserRepository {
                             resultSet.getString("fname"),
                             resultSet.getString("lname"),
                             resultSet.getString("email"),
-                            resultSet.getString("password")
+                            resultSet.getString("password"),
+                            Integer.parseInt(resultSet.getString("age"))
                     );
                 }
             }
@@ -68,7 +80,7 @@ public class UserRepository {
     }
 
     public List<User> getAll() throws Exception {
-        final String sql = "select id, fname, lname, email, password" +
+        final String sql = "select id, fname, lname, email, password, age" +
                 " from \"Meettime\".\"Meettime\".\"User\" ;";
 
         List<User> users = new ArrayList<>();
@@ -82,7 +94,8 @@ public class UserRepository {
                             resultSet.getString("fname"),
                             resultSet.getString("lname"),
                             resultSet.getString("email"),
-                            resultSet.getString("password")
+                            resultSet.getString("password"),
+                             Integer.parseInt(resultSet.getString("age"))
                     ));
                 }
             }
@@ -92,21 +105,21 @@ public class UserRepository {
         }
     }
 
-    public boolean addUser(User user) throws Exception {
+    public Integer addUser(User user) throws Exception {
         if (findByEmail(user.getEmail()) != null) {
-            return false;
+            return -1;
         }
 
-        final String sql = "insert into \"Meettime\".\"Meettime\".\"User\" (fname, lname, email, password) " +
+        final String sql = "insert into \"Meettime\".\"Meettime\".\"User\" (fname, lname, email, password, age) " +
                 "values('" + user.getFname() +"'," +
                 " '" + user.getLname() + "'," +
                 " '" + user.getEmail() + "'," +
-                " '" + user.getPassword() + "')";
+                " '" + user.getPassword() + "'," +
+                " " + user.getAge() + ")";
 
         try (Connection connection = dataSource.getConnection();
              PreparedStatement statement = connection.prepareStatement(sql)) {
-                 statement.executeQuery();
-                 return true;
+             return statement.executeUpdate();
         } catch (Exception e) {
             throw new Exception(e);
         }
