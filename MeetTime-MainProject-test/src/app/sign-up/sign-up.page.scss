@@ -1,9 +1,14 @@
-
-
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap');
 
 ion-content {
     --ion-background-color: #ffffff;
+    left: 0;
+    top: 0;
+}
+
+.ion-padding{
+  left: 0;
+  top: 0;
 }
 
 ion-input{
@@ -148,27 +153,60 @@ ion-slides {
 
 
 
-/*
+.pageInfo{
+  margin-top: 50%;
+  margin-left:40%;
+}
+
 .circle1 {
     position: absolute;
     z-index: -1;
-    background: #8AA1B1;
+    background: black;
     border-radius: 50%;
-    width: 100px;
-    height: 100px;
+    width: 15px;
+    height: 15px;
+
 }
 
 .circle2 {
   position: absolute;
   z-index: -1;
-  background: #8DBEFF;
-  border-radius: 60%;
-  width: 150px;
-  height: 150px;
-  right: 0;
-  margin-top:-30%;
+  border: 3px solid black;
+  background: white;
+  border-radius: 50%;
+  width: 15px;
+  height: 15px;
+  margin-left:10%;
 }
 
+.pageInfo2{
+  margin-top: 50%;
+  margin-left:40%;
+}
+
+.circle3 {
+  position: absolute;
+  z-index: -1;
+  background: black;
+  
+  border-radius: 50%;
+  width: 15px;
+  height: 15px;
+  margin-left:10%;
+
+}
+
+.circle4 {
+  position: absolute;
+    z-index: -1;
+    border: 3px solid black;
+  background: white;
+    border-radius: 50%;
+    width: 15px;
+    height: 15px;
+}
+
+/*
 .circle3 {
   position: absolute;
   z-index: -1;
