@@ -1,17 +1,44 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>LoginOrSignUp</ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content>
   <ion-text>
-    <p id="p">Welcome to Meettime!!!<br>Do want to</p>
+    <p id="p">Welcome to Meettime!!!</p>
   </ion-text>
-  <ion-button (click)="loginBtn()" id="logBtn" epand="block">LOGIN</ion-button>
+
+  <div id="loginBox">
+    <ion-text>
+        <h1 id="h1">Login</h1>
+      </ion-text>
+      <div class="slide">
+        <ion-item class="label">
+          <ion-label for="email"></ion-label>
+          <ion-input id="email" type="mail" placeholder="E-Mail"></ion-input>
+        </ion-item>
+        <ion-item class="label">
+          <ion-label for="password"></ion-label>
+          <ion-input id="password" type="Password" placeholder="Password"></ion-input>
+        </ion-item>
+      </div><br>
+      <ion-button id="buttonSignUp" (click)="Login()">Login</ion-button>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+  <div id="signBox">
+    <h1>Hello Friend,</h1>
+    <ion-text>
+      If you are new and you want to create an account we need a few informations of you before you can start looking for friends! 
+      <br><br>
+    </ion-text>
+    <ion-button id="signUpBtn" (click)="signUpBtn()" expand="block">SIGN-UP</ion-button>
+  </div>
   <ion-text>
-    <p id="p">or</p>
   </ion-text>
-  <ion-button id="signUpBtn" (click)="signUpBtn()" expand="block">SIGN-UP</ion-button>
 </ion-content>
  

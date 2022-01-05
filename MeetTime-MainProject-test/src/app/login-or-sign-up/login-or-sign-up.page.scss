@@ -1,5 +1,8 @@
 ion-content {
     --ion-background-color: #ffffff;
+    width:100%;
+    top: 0;
+    left:0;
 }
 
 #p{
@@ -8,20 +11,74 @@ ion-content {
     text-align: center;
     margin-top: 10%;
     font-weight: bold;
+    font-family: 'Arial';
 }
 
-#logBtn{
-    width: 30%;
-    margin-top: 10%;
-    margin-left: 35%;
+h1{
+    text-align: center;
+    font-size:150%;
+}
+
+#buttonSignUp{
+    left:0;
+    width: 90%;
     box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
-    border-radius: 30%;
+    border-radius: 25%;
+    --ion-color-danger: #66a8ff;
 }   
 
 #signUpBtn{
-    width: 30%;
-    margin-top: 10%;
-    margin-left: 35%;
+    width: 100%;
     box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
-    border-radius: 40%;
+    border-radius: 25%;
+    --ion-color-danger: #66a8ff;
 }
+
+#loginBox{
+    color:black;
+    width:100%;
+    background:white;
+    height:45%;
+    padding:5%;
+    text-align: center;
+}
+
+#signBox{
+    color:black;
+    width:100%;
+    background: white;
+    height:45%;
+    padding:5%;
+    text-align: center;
+}
+
+
+
+
+
+
+
+
+
+
+.label{
+    width: 90%;
+    border-radius: 3px;
+    margin-top: 2%;
+    margin-left: 5%;
+    color:gray;
+  
+    --background:white;
+    --border-radius: 0px;
+    --border:1px solid black;
+  }
+  
+  .label:hover{
+  width: 90%;
+  border-radius: 3px;
+  margin-top: 2%;
+  margin-left: 5%;
+  color:gray;
+  --border-radius: 0px;
+  --border:1px solid black;
+  }
