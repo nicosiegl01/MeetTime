@@ -36,23 +36,29 @@ export class SignUpPage implements OnInit {
     const age = Number((<HTMLInputElement>document.getElementById("age")).value);
 
     if (password == confirmPassword && password != "" && confirmPassword != "" && emailValue != emailValue2 || emailValue == "" || emailValue2 == "") {
-      document.querySelector("#errorWarning").innerHTML = "Wrong email";
+      this.presentAlert('Wrong E-Mail!');
+      alert("1")
     }
     else if (emailValue != emailValue2) {
-      document.querySelector("#errorWarning").innerHTML = "Wrong email";
+      this.presentAlert('E-Mails are different!');
+      alert("2")
     }
     if (emailValue == emailValue2 && emailValue != "" && emailValue2 != "" && password != confirmPassword || password == "" || confirmPassword == "") {
-      document.querySelector("#errorWarning").innerHTML = "Wrong password";
+      this.presentAlert('Wrong password!');
+      alert("3")
     }
     else if (password != confirmPassword) {
-      document.querySelector("#errorWarning").innerHTML = "Wrong password";
+      this.presentAlert('Passwords are different!');
+      alert("4")
     }
     if (age < 18) {
-      document.querySelector("#errorWarning").innerHTML = "You are to young";
+      this.presentAlert('You have to be at least 18 years old!');
+      alert("5")
     }
     if(emailValue == emailValue2 && emailValue != "" && emailValue2 != "" && password == confirmPassword && password != "" && confirmPassword != "" && age >= 18){
-      this.presentAlert('You can now login to your account');
+      this.presentAlert('SignUp was successful!');
       this.router.navigate(['login-or-sign-up']);
+      alert("correct")
     }
   }
 
