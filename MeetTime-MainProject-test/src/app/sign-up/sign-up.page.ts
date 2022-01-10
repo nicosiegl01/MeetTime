@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
+import { Middleware } from "../middleware/Middleware";
+  
+let user = new Middleware();
 
 @Component({
   selector: 'app-sign-up',
@@ -53,6 +56,7 @@ export class SignUpPage implements OnInit {
     if(emailValue == emailValue2 && emailValue != "" && emailValue2 != "" && password == confirmPassword && password != "" && confirmPassword != "" && age >= 18){
       this.presentAlert('You can now login to your account');
       this.router.navigate(['login-or-sign-up']);
+      user.test();
     }
   }
 
