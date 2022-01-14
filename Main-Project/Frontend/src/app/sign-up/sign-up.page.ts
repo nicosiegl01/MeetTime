@@ -53,10 +53,10 @@ export class SignUpPage implements OnInit {
     if (age < 18) {
       document.querySelector("#errorWarning").innerHTML = "You are to young";
     }
-    if(emailValue == emailValue2 && emailValue != "" && emailValue2 != "" && password == confirmPassword && password != "" && confirmPassword != "" && age >= 18){
+    if(true/*emailValue == emailValue2 && emailValue != "" && emailValue2 != "" && password == confirmPassword && password != "" && confirmPassword != "" && age >= 18 */){
       this.presentAlert('You can now login to your account');
       this.router.navigate(['login-or-sign-up']);
-      user.test();
+      user.createUser();
     }
   }
 
