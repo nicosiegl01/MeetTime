@@ -1,7 +1,7 @@
 <ion-header>
 
 </ion-header>
-<ion-content fullscreen class="ion-padding" scroll-y="false">
+<ion-content fullscreen class="ion-padding" scroll-y="false" (click)="save()">
   <ion-slides>
     <ion-slide>
       <ion-text>
@@ -12,9 +12,7 @@
           <ion-label for="email"></ion-label>
           <ion-input id="email" placeholder="E-Mail"></ion-input>
         </ion-item>
-
         <br>
-
         <ion-item class="label">
           <ion-label></ion-label>
           <ion-input id="confirmEmail" placeholder="Confirm E-Mail"></ion-input>
@@ -42,13 +40,13 @@
       </ion-text>
       <ion-item class="label">
         <ion-label></ion-label>
-        <ion-input placeholder="Firstname"></ion-input>
+        <ion-input id="firstnameInput" placeholder="Firstname"></ion-input>
       </ion-item>
       <br>
 
       <ion-item class="label">
         <ion-label></ion-label>
-        <ion-input placeholder="Lastname"></ion-input>
+        <ion-input id="lastnameInput" placeholder="Lastname"></ion-input>
       </ion-item>
       <br>
 
