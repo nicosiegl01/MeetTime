@@ -9,4 +9,14 @@ export class Middleware {
   }).then(result => result.json())
   .then(jsonformat=>console.log(jsonformat));
   }
+
+  loginUser(mail,pw){
+    // User data from input-fields
+    fetch('http://localhost:8080/user/'+mail+'/'+pw, {
+    method: 'GET',
+    headers: { 'Content-Type': 'application/json' }
+  }).then(result => result.json())
+  .then(jsonformat=>console.log(jsonformat));
+  }
 }
+

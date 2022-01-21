@@ -249,6 +249,11 @@ ion-input{
 
 }
 
+ion-input:hover{
+  //border:5px solid #FFCB47;
+
+}
+
 ion-input::placeholder{
   left:0;
 }
@@ -260,8 +265,8 @@ ion-button{
   bottom: 0;
   left:0;
   width: 95%;
-  margin-top: 0%;
-  position: absolute;
+  margin-top: 22.5%;
+  position: realtive;
 }
 
 ion-label{
@@ -281,7 +286,7 @@ ion-label{
 }
 
 .label{
-    width: 100%;
+    width: 90%;
     border-radius: 3px;
     margin-left: 0%;
     color:gray;
@@ -294,10 +299,8 @@ ion-label{
 .label:hover{
   width: 90%;
   border-radius: 3px;
-  margin-left: 5%;
   color:gray;
   --border-radius: 0px;
-  --border:1px solid black;
 }
 
 #email{
@@ -337,55 +340,6 @@ ion-label{
     font-size:500%;
   }
 
-
-
-.circle1 {
-    position: absolute;
-    z-index: -1;
-    background: black;
-    border-radius: 50%;
-    width: 15px;
-    height: 15px;
-
-}
-
-.circle2 {
-  position: absolute;
-  z-index: -1;
-  border: 3px solid black;
-  background: white;
-  border-radius: 50%;
-  width: 15px;
-  height: 15px;
-  margin-left:10%;
-}
-
-.pageInfo2{
-  margin-top: 50%;
-  margin-left:40%;
-}
-
-.circle3 {
-  position: absolute;
-  z-index: -1;
-  background: black;
-  
-  border-radius: 50%;
-  width: 15px;
-  height: 15px;
-  margin-left:10%;
-
-}
-
-.circle4 {
-  position: absolute;
-    z-index: -1;
-    border: 3px solid black;
-  background: white;
-    border-radius: 50%;
-    width: 15px;
-    height: 15px;
-}
 
 /*
 .circle3 {

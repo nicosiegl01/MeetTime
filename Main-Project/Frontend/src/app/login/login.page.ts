@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { AlertController } from '@ionic/angular';
 import { Router } from '@angular/router';
+import { Middleware } from "../middleware/Middleware";
+
+let user = new Middleware();
 
 @Component({
   selector: 'app-login',
@@ -39,6 +42,7 @@ export class LoginPage implements OnInit {
     /*  Hier Datenbankabfrage ob es die Email überhaupt gibt
       Danach überprüfen ob das passwort und die email übereinstimmen
     */
+    user.loginUser(emailValue,password)
 
     if(!userExists){
       this.presentAlert('This E-Mail adress is unknown!')
