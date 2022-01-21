@@ -4,10 +4,6 @@ import { AlertController } from '@ionic/angular';
 import { Middleware } from "../middleware/Middleware";
   
 let user = new Middleware();
-let mail = ""
-let mailconfirm = ""
-let password = ""
-let passwordConfirm = ""
 
 @Component({
   selector: 'app-sign-up',
@@ -20,10 +16,10 @@ export class SignUpPage implements OnInit {
     this.router = router;
   }
   
-  async presentAlert(msg) {
+  async presentAlert(msg,head) {
     const alert = await this.alertController.create({
-      cssClass: 'my-custom-class',
-      header: '',
+      cssClass: 'my-custom-classs',
+      header: head,
       message: msg,
       buttons: ['OK']
     });
@@ -34,77 +30,47 @@ export class SignUpPage implements OnInit {
     console.log('onDidDismiss resolved with role', role);
   }
 
-  save(){
-    let mailTemp = (<HTMLInputElement>document.getElementById("email")).value;
-    let mail2Temp = (<HTMLInputElement>document.getElementById("confirmEmail")).value;
-    let pwTemp = (<HTMLInputElement>document.getElementById("password")).value;
-    let pw2Temp = (<HTMLInputElement>document.getElementById("confirmPassword")).value;
-    if(mailTemp!=""){ 
-      mail = mailTemp
-    }
-    if(mail2Temp!=""){
-      mailconfirm = mail2Temp
-    }
-    if(pwTemp != ""){
-      password = pwTemp
-    }
-    if(pw2Temp != ""){
-      password = pw2Temp
-    }
-  }
-
-
   SignUp() {
-    let emailValue = (<HTMLInputElement>document.getElementById("email")).value;
-    let emailValue2 = (<HTMLInputElement>document.getElementById("confirmEmail")).value;
-    let password = (<HTMLInputElement>document.getElementById("password")).value;
-    let confirmPassword = (<HTMLInputElement>document.getElementById("confirmPassword")).value;
+    let emailValue = (<HTMLInputElement>document.getElementById("MAIL")).value;
+    //let emailValue2 = (<HTMLInputElement>document.getElementById("confirmEmail")).value;
+    let password = (<HTMLInputElement>document.getElementById("PW")).value;
+    let confirmPassword = (<HTMLInputElement>document.getElementById("PW2")).value;
     const age = Number((<HTMLInputElement>document.getElementById("age")).value);
     const firstname = (<HTMLInputElement>document.getElementById("firstnameInput")).value;
     const lastname = (<HTMLInputElement>document.getElementById("lastnameInput")).value;
-    console.log('Mail:');
-    console.log(emailValue);
-    console.log(mail);
+    let errormsg = (<HTMLInputElement>document.getElementById("error")).innerHTML;
+    const errHeader = "Missing Attribute"
     
-
-    console.log('PW:');
-    console.log(password);
-    console.log(password);
-    
-    user.createUser("test","test","test","test",22)
-    
-    alert(emailValue);
-    if (password == confirmPassword && password != "" && emailValue != emailValue2 || emailValue == "") {
-      document.querySelector("#errorWarning").innerHTML = "Wrong email";
+    //user.createUser("test","test","test","test",22)
+    if(password==""){
+      this.presentAlert("You need to enter a password!",errHeader)
+      errormsg = "You need to enter a password!";
+      return;
     }
-    else if (emailValue != emailValue2) {
-      document.querySelector("#errorWarning").innerHTML = "Wrong email";
+    if(confirmPassword==""){
+      this.presentAlert("You need to enter the password a second time!",errHeader)
+      return;
     }
-    if (emailValue == emailValue2 && emailValue != "" && emailValue2 != "" && password != confirmPassword || password == "" || confirmPassword == "") {
-      document.querySelector("#errorWarning").innerHTML = "Wrong password";
+    if(password!=confirmPassword){
+      this.presentAlert("Passwords are different!",errHeader)
+      return;
     }
-    else if (password != confirmPassword) {
-      document.querySelector("#errorWarning").innerHTML = "Wrong password";
+    if(emailValue==""){
+      this.presentAlert("You must enter a mail adress",errHeader)
+      return;
     }
-    else if (age < 18) {
-      document.querySelector("#errorWarning").innerHTML = "You are to young";
+    if (age < 18) {
+      this.presentAlert("You are to young",errHeader)
+      return;
     }
-    if(emailValue == emailValue2 && emailValue != "" && password == confirmPassword && password != "" && age >= 18 ){
-      this.presentAlert('You can now login to your account');
+    if(emailValue != "" && password == confirmPassword && password != "" && age >= 18 ){
+      this.presentAlert('You can now login to your account','Successful Registration');
       this.router.navigate(['login-or-sign-up']);
-      user.createUser(firstname,lastname,mail,password,age)
+      user.createUser(firstname,lastname,emailValue,password,age)
     }
   }
 
   ngOnInit() {
-  }
-
-  switchToView1() {
 
   }
-
-  switchToView2() {
-    
-  }
-
 }

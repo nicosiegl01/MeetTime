@@ -1,4 +1,4 @@
-<ion-header>
+<!-- <ion-header>
 
 </ion-header>
 <ion-content fullscreen class="ion-padding" scroll-y="false" (click)="save()">
@@ -75,4 +75,69 @@
       <ion-button id="SignUpBtn" class="buttonSignUp" color="danger" (click)="SignUp()">Sign-Up</ion-button>
     </ion-slide>
   </ion-slides>
+</ion-content>
+
+!-->
+
+<ion-content fullscreen class="ion-padding" scroll-y="false">
+  <ion-text>
+    <h1 id="h1">Sign Up</h1>
+  </ion-text>
+
+  <ion-item class="label">
+    <ion-label></ion-label>
+    <ion-input id="MAIL" placeholder="E-Mail"></ion-input>
+  </ion-item>
+
+    <ion-item class="label">
+      <ion-label></ion-label>
+      <ion-input id="PW" placeholder="Password" type="password"></ion-input>
+    </ion-item>
+
+    <ion-item class="label">
+      <ion-label></ion-label>
+      <ion-input id="PW2" placeholder="Confirm Password" type="password"></ion-input>
+    </ion-item>
+
+    <div class="pageInfo">
+      <div class="circle1"></div>
+      <div (click)="switchToView2" class="circle2"></div>
+    </div>
+
+  <ion-item class="label">
+    <ion-label></ion-label>
+    <ion-input id="firstnameInput" placeholder="Firstname"></ion-input>
+  </ion-item>
+
+  <ion-item class="label">
+    <ion-label></ion-label>
+    <ion-input id="lastnameInput" placeholder="Lastname"></ion-input>
+  </ion-item>
+
+  <ion-item class="label">
+    <ion-label>Sex</ion-label>
+    <ion-select value="notifications" placeholder="Choose" interface="action-sheet">
+      <ion-select-option value="mute_female">Female</ion-select-option>
+      <ion-select-option value="mute_male">Male</ion-select-option>
+      <ion-select-option value="mute_different">Divers</ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-item class="label">
+    <ion-label></ion-label>
+    <ion-input id="age" type="number" placeholder="Age"></ion-input>
+  </ion-item>
+
+  <ion-text>
+    <p id="errorWarning"></p>
+  </ion-text>
+
+  <div class="pageInfo2">
+    <div (click)="switchToView1" class="circle3"></div>
+    <div class="circle4"></div>
+  </div>
+  <ion-text>
+    <p id="error">aaaaaa</p>
+  </ion-text>
+  <ion-button id="SignUpBtn" class="buttonSignUp" color="danger" (click)="SignUp()">Sign-Up</ion-button>
 </ion-content>
