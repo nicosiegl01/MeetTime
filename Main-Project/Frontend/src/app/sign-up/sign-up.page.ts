@@ -38,13 +38,11 @@ export class SignUpPage implements OnInit {
     const age = Number((<HTMLInputElement>document.getElementById("age")).value);
     const firstname = (<HTMLInputElement>document.getElementById("firstnameInput")).value;
     const lastname = (<HTMLInputElement>document.getElementById("lastnameInput")).value;
-    let errormsg = (<HTMLInputElement>document.getElementById("error")).innerHTML;
     const errHeader = "Missing Attribute"
     
     //user.createUser("test","test","test","test",22)
     if(password==""){
       this.presentAlert("You need to enter a password!",errHeader)
-      errormsg = "You need to enter a password!";
       return;
     }
     if(confirmPassword==""){
