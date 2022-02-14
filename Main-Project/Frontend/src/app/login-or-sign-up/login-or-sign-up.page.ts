@@ -28,6 +28,8 @@ export class LoginOrSignUpPage implements OnInit {
   }
 
   Login(){
+    this.playSound()
+
     let emailValue = (<HTMLInputElement>document.getElementById("email")).value;
     let password = (<HTMLInputElement>document.getElementById("password")).value;
     let isAllowedToSwitch = true;
@@ -49,7 +51,6 @@ export class LoginOrSignUpPage implements OnInit {
     if(isAllowedToSwitch){
       this.switchView(true)
     }
-
   }
 
   switchView(allowed){
@@ -65,6 +66,19 @@ export class LoginOrSignUpPage implements OnInit {
   }
 
   ngOnInit() {
+  }
+
+  private playSound() {
+    /*var player = require('play-sound')
+    player.play('../../assets/sounds/login.mp3', function(err){
+      if (err) throw err
+    })*/
+
+    let audio = new Audio();
+    audio.src = "../../assets/sounds/login.mp3";
+    audio.load();
+    audio.play();
+
   }
 }
 
