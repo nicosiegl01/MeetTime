@@ -34,6 +34,8 @@ export class LoginPage implements OnInit {
   } 
 
   Login(){
+    console.log("in func");
+    
     let emailValue = (<HTMLInputElement>document.getElementById("email")).value;
     let password = (<HTMLInputElement>document.getElementById("password")).value;
     let isAllowedToSwitch = true;
@@ -51,8 +53,11 @@ export class LoginPage implements OnInit {
     if(!isAllowedToSwitch){
       this.presentAlert('E-Mail and password do not match!')
     }
+console.log("before switch");
 
     this.switchView(true)
+    console.log("switch");
+    
     if(isAllowedToSwitch){
       this.switchView(true)
     }

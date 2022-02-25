@@ -1,4 +1,4 @@
-ion-content {
+/* ion-content {
   --ion-background-color: #ffffff;
 }
 
@@ -38,4 +38,56 @@ ion-content {
   margin-left: 25%;
   width: 50%;
   visibility: hidden;
+}
+
+#logo{
+  margin-top: 80%;
+} */
+
+ion-content {
+  --ion-background-color: #ffffff;
+
+}
+
+.buttonMain{
+  width: 48%;
+}
+
+ion-card-title{
+  font-size: small;
+  margin-bottom: 5%;
+
+}
+
+ion-card{
+  background-color: mintcream;
+}
+
+#chat{
+ margin-left: 10%;
+ position: relative;
+}
+
+#settings{
+  position: relative;
+  margin-left: 70%;
+}
+
+#pb{
+  width: 15%;
+
+}
+
+#sortOutButton{
+  margin-left: 30%;
+  margin-top: 10%;
+}
+
+#goButton{
+  margin-left: 20%;
+}
+
+
+#entfernung{
+  margin-bottom: 10%;
 }
