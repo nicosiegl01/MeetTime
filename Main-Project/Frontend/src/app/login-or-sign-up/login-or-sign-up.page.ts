@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
+import { User } from '../User.model';
+import { Observable, of } from "rxjs";
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 @Component({
   selector: 'app-login-or-sign-up',
@@ -8,8 +11,8 @@ import { AlertController } from '@ionic/angular';
   styleUrls: ['./login-or-sign-up.page.scss'],
 })
 export class LoginOrSignUpPage implements OnInit {
-
-  constructor(public alertController: AlertController,private router: Router) {
+  userDoesExist = false;
+  constructor(public alertController: AlertController,private router: Router,private http: HttpClient) {
     this.router = router;
   }
 
@@ -27,30 +30,48 @@ export class LoginOrSignUpPage implements OnInit {
     console.log('onDidDismiss resolved with role', role);
   }
 
-  Login(){
+  async Login(){
     this.playSound()
 
     let emailValue = (<HTMLInputElement>document.getElementById("email")).value;
     let password = (<HTMLInputElement>document.getElementById("password")).value;
-    let isAllowedToSwitch = true;
-    let userExists = true;
+    let isAllowedToSwitch = false;
+    let userExists = false;
 
     /*  Hier Datenbankabfrage ob es die Email überhaupt gibt
       Danach überprüfen ob das passwort und die email übereinstimmen
     */
 
-    if(!userExists){
-      this.presentAlert('This E-Mail adress is unknown!')
+      if(emailValue == ""){
+        this.presentAlert('Please enter an E-Mail Address!')
+        return;
+       }
+    
+       if(password == ""){
+        this.presentAlert('Please enter a password!')
+        return;
+       }
+    
+       let user = await this.http.get<boolean>("http://localhost:8080/user/"+emailValue+"/"+password)
+       console.log(user.forEach(data=>console.log(data)));
+       await user.forEach(data=>this.userDoesExist=data);
+       console.log(this.userDoesExist);
+       
+
+
+       
+    if(!this.userDoesExist){
+      this.presentAlert('Email or Password is not correct')
+      return
+    }else{
+      isAllowedToSwitch = true;
+      localStorage.setItem('currentMail', emailValue);
     }
 
-    if(!isAllowedToSwitch){
-      this.presentAlert('E-Mail and password do not match!')
-    }
-
-    this.switchView(true)
     if(isAllowedToSwitch){
       this.switchView(true)
     }
+
   }
 
   switchView(allowed){

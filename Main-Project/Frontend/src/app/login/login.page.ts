@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { AlertController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { Middleware } from "../middleware/Middleware";
+import { User } from '../User.model';
+import { Observable, of } from "rxjs";
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 let user = new Middleware();
 
@@ -12,7 +15,7 @@ let user = new Middleware();
 })
 export class LoginPage implements OnInit {
 
-  constructor(public alertController: AlertController,private router: Router) {
+  constructor(public alertController: AlertController,private router: Router,private http: HttpClient) {
     this.router = router;
   }
 
@@ -34,25 +37,40 @@ export class LoginPage implements OnInit {
   } 
 
   Login(){
-    console.log("in func");
-    
     let emailValue = (<HTMLInputElement>document.getElementById("email")).value;
     let password = (<HTMLInputElement>document.getElementById("password")).value;
-    let isAllowedToSwitch = true;
-    let userExists = true;
+    let isAllowedToSwitch = false;
+    let userExists = false;
 
     /*  Hier Datenbankabfrage ob es die Email überhaupt gibt
       Danach überprüfen ob das passwort und die email übereinstimmen
     */
-    user.loginUser(emailValue,password)
+   if(emailValue == ""){
+    this.presentAlert('Please enter an E-Mail Address!')
+    return;
+   }
 
-    if(!userExists){
+   if(password == ""){
+    this.presentAlert('Please enter a password!')
+    return;
+   }
+
+   let user = this.http.get<User[]>("http://localhost:8080/user/"+emailValue+"/"+password)
+
+   console.log(user);
+   
+
+
+
+    /*if(!userExists){
       this.presentAlert('This E-Mail adress is unknown!')
     }
 
     if(!isAllowedToSwitch){
       this.presentAlert('E-Mail and password do not match!')
     }
+
+
 console.log("before switch");
 
     this.switchView(true)
@@ -61,6 +79,8 @@ console.log("before switch");
     if(isAllowedToSwitch){
       this.switchView(true)
     }
+
+    */
 
   }
 

@@ -1,5 +1,5 @@
 <ion-content>
-  <ion-list>
+  <!-- <ion-list>
     <ion-item>
       <ion-label><img src=""></ion-label>
     </ion-item>
@@ -14,17 +14,82 @@
     </ion-item>
     <ion-item>
       <ion-label>Activities:</ion-label>
-      <div id="activitieBox">
+      <div id="activitieBox"> -->
 
-      </div>
+      <!-- </div>
     </ion-item>
     <ion-item>
       <ion-label>Description:</ion-label>
       <ion-text></ion-text>
     </ion-item>
     
+  </ion-list> -->
+  <h1 id="h1">Profile Settings</h1>
+  <br>
+  <ion-list id="list" >
+    <ion-item>
+      <h2 class="headline" position="stacked">Firstname</h2>
+      <ion-label position="stacked">{{ (user$ | async)?.fname }}</ion-label>
+      <ion-textarea placeholder="new firstname"></ion-textarea>
+    </ion-item>
+
+    <ion-item>
+      <h2 class="headline" position="stacked">Lastname</h2>
+      <ion-label position="stacked">{{ (user$ | async)?.lname }}</ion-label>
+      <ion-textarea placeholder="new lastname"></ion-textarea>
+    </ion-item>
+
+    <ion-item>
+      <h2 class="headline" position="stacked">E-Mail</h2>
+      <ion-label position="stacked">{{ (user$ | async)?.email }}</ion-label>
+      <ion-textarea placeholder="change email"></ion-textarea>
+    </ion-item>
+
+    <ion-item>
+      <h2 class="headline" position="stacked">Sex</h2>
+      <ion-label position="stacked">Diverse</ion-label>
+      <ion-select value="notifications" placeholder="change sex" interface="action-sheet">
+        <ion-select-option value="mute_female">Female</ion-select-option>
+        <ion-select-option value="mute_male">Male</ion-select-option>
+        <ion-select-option value="mute_different">Divers</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <h1 id="headline1" position="stacked">Activities</h1>
+    <ion-item>
+      <ion-chip>
+        <ion-label color="dark">Football</ion-label>
+        <ion-icon name="close-circle"></ion-icon>
+      </ion-chip>
+      <ion-chip>
+        <ion-label color="dark">F1</ion-label>
+        <ion-icon name="close-circle"></ion-icon>
+      </ion-chip>
+      <ion-chip>
+        <ion-label color="dark">Basketball</ion-label>
+        <ion-icon name="close-circle"></ion-icon>
+      </ion-chip>
+    </ion-item>
+
+    <h1 id="headline1" position="stacked">Add Activities</h1>
+    <ion-item>
+      <ion-input placeholder="activitie"></ion-input>
+      <ion-button id="addBtn">Add</ion-button>
+    </ion-item>
+
+    <!-- <ion-item>
+      <h2 class="headline" position="stacked">Password</h2>
+      <ion-label position="stacked">password</ion-label>
+      <ion-textarea placeholder="change password"></ion-textarea>
+      <ion-button>Submit</ion-button>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Password</ion-label>
+      <ion-textarea placeholder="change password"></ion-textarea>
+    </ion-item> -->
   </ion-list>
 
-  <ion-button id="saveButton" expand="full">Save</ion-button>
+  <ion-button id="saveButton" expand="block" color="dark">Save changes</ion-button>
 
 </ion-content>

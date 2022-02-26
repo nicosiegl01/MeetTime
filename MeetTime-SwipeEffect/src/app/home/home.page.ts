@@ -42,8 +42,11 @@ export class HomePage {
 
 
   ngAfterViewInit(){
+    console.log(this.cards);
+    
     const cardArray = this.cards.toArray();
-
+    console.log(cardArray);
+    
     // this.useLongPress(cardArray)
     this.useTinderSwipe(cardArray)
   }

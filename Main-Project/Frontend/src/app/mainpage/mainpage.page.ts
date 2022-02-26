@@ -43,7 +43,6 @@ export class MainpagePage implements OnInit,AfterViewInit{
   }
 
   ngOnInit() {
-    //this.getAll();
     this.users$ = this.http.get<User[]>("http://localhost:8080/user/getAllUsers")
     console.log(this.users$.forEach(data=>console.log(data)));
   }
