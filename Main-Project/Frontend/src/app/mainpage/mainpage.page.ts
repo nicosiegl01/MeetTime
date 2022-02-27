@@ -17,58 +17,52 @@ let middleware = new Middleware();
 export class MainpagePage implements OnInit,AfterViewInit{
   usersToBePresentated:User[] = [];
   users$: Observable<User[]>;
-  users2$: Observable<User[]>;
+  dislikedUsers$: Observable<User[]>;
+  likedUsers$: Observable<User[]>;
 
   @ViewChildren(IonCard,{read: ElementRef}) cards: QueryList<ElementRef>
   constructor(private router: Router,private http: HttpClient,private gestureCtrl: GestureController, private zone:NgZone, private plt: Platform) {
     this.router = router;
   }
 
-
-  Login(){
-
-  }
-
   switchToContactPage(){
     this.router.navigate(['profil-einstellungen']);
   }
 
-  ngAfterViewInit(){
+  async ngAfterViewInit(){
+    let x = await this.delay(500);
     console.log(this.cards);
-    
+
     const cardArray = this.cards.toArray();
     this.useTinderSwipe(cardArray)
     console.log(cardArray);
+  }
+  
+  async delay(delayInms) {
+    return new Promise(resolve  => {
+      setTimeout(() => {
+        resolve(2);
+      }, delayInms);
+    });
+  }
+
+  async ngOnInit() {
+    this.users$ = await this.http.get<User[]>("http://localhost:8080/user/getAllUsers")
+  }
+
+  dislike(){
+    console.log(this.users$);
+    console.log("switch");
     
   }
 
-  ngOnInit() {
-    this.users$ = this.http.get<User[]>("http://localhost:8080/user/getAllUsers")
-    console.log(this.users$.forEach(data=>console.log(data)));
+  like(){
+    console.log(this.users$);
   }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
   useTinderSwipe(cardArray){
-    console.log(cardArray.length);
-    
     for (let i = 0; i < cardArray.length; i++) {
       const card = cardArray[i]
-      console.log(card+",card");
-      
       const gesture: Gesture = this.gestureCtrl.create({
         el: card.nativeElement,
         threshold: 15,
@@ -81,7 +75,8 @@ export class MainpagePage implements OnInit,AfterViewInit{
         },
         onEnd: event=>{
           card.nativeElement.style.transition = '.5s ease-out';
-
+          console.log("in gesture");
+          
           if(event.deltaX>150){
             card.nativeElement.style.transform = `translateX(${+this.plt.width()*2}px) rotate(${event.deltaX / 2}deg)`
           } else if(event.deltaX<-150){

@@ -1,62 +1,7 @@
-<!-- <ion-header>
-  <ion-toolbar>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content>
-  <ion-card>
-  <ion-card-header>
-    <ion-card-subtitle id="entfernung">5km entfernt</ion-card-subtitle>
-    <img id="pb" src="https://img.icons8.com/pastel-glyph/64/000000/person-male--v1.png"/>
-    <ion-card-title>Max Mustermann</ion-card-title>
-  </ion-card-header>
-
-  <ion-card-content>
-    <div id="descriptionBox">
-      I want to find someone .........
-    </div>
-    <br><br>
-
-    <ion-chip>
-      <ion-label color="success">Football</ion-label>
-    </ion-chip>
-    <ion-chip>
-      <ion-label color="success">F1</ion-label>
-    </ion-chip>
-    <ion-chip>
-      <ion-label color="danger">Basketball</ion-label>
-    </ion-chip>
-  </ion-card-content>
-</ion-card>
-<img id="sortOutButton"  src="https://img.icons8.com/material-rounded/24/000000/delete-sign.png"/>
-<img id="goButton" src="https://img.icons8.com/material-outlined/24/000000/checkmark--v3.png"/>
--->
-<!-- <ion-button id="dislike" class="buttonMain" color="danger" (click)="LikePerson()">Dislike</ion-button>
-<ion-button id="like" class="buttonMain" color="success" (click)="DisLikePerson()">Like</ion-button> -->
-<!--
-</ion-content>
-<ion-tabs>
-  <ion-tab-bar slot="bottom">
-    <ion-tab-button tab="schedule">
-      <ion-icon name="calendar"></ion-icon>
-    </ion-tab-button>
-
-    <ion-tab-button tab="map">
-      <ion-icon name="map"></ion-icon>
-    </ion-tab-button>
-
-    <ion-tab-button (click)="switchToContactPage()" tab="about">
-      <ion-icon name="contact-outline"></ion-icon>
-    </ion-tab-button>
-  </ion-tab-bar>
-</ion-tabs>
- -->
-
 <ion-header>
   <ion-toolbar>
     <ion-icon id="chat" name="chatbox-ellipses-outline"></ion-icon>
     <ion-icon id="settings" name="settings-outline"></ion-icon>
-
   </ion-toolbar>
 </ion-header>
   
@@ -67,7 +12,7 @@
     </li>
   </ul> -->
   <div id="cardBox">
-    <ion-card style="position:absolute;background-color:rgba(0,0,0,0.5);" *ngFor="let user of (users$ | async); index as i">
+    <ion-card style="position:absolute;background-color:rgba(0,0,0,1);z-index:0;" *ngFor="let user of (users$ | async); index as i">
       <ion-card-header>
         <ion-card-subtitle id="entfernung">5km entfernt</ion-card-subtitle>
         <ion-card-title>{{user.fname}} {{user.lname}}</ion-card-title>
@@ -95,21 +40,21 @@
       </ion-card-content>
     </ion-card>
   </div>
-<!-- <ion-button id="dislike" class="buttonMain" color="danger" (click)="LikePerson()">Dislike</ion-button>
-<ion-button id="like" class="buttonMain" color="success" (click)="DisLikePerson()">Like</ion-button> -->
+   <ion-button id="dislike" class="buttonMain" color="medium" (click)="dislike()">Dislike</ion-button>
+    <ion-button id="like" class="buttonMain" color="medium" (click)="like()">Like</ion-button>
 </ion-content>
 <ion-tabs>
   <ion-tab-bar slot="bottom">
     <ion-tab-button tab="schedule">
-      <ion-icon name="calendar"></ion-icon>
+      <ion-icon name="chatbubbles"></ion-icon>
     </ion-tab-button>
 
     <ion-tab-button tab="map">
-      <ion-icon name="map"></ion-icon>
+      <ion-icon name="flame"></ion-icon>
     </ion-tab-button>
 
     <ion-tab-button (click)="switchToContactPage()" tab="about">
-      <ion-icon name="contact-outline"></ion-icon>
+      <ion-icon name="settings"></ion-icon>
     </ion-tab-button>
   </ion-tab-bar>
 </ion-tabs>
