@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { Router } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 
 import { ProfilEinstellungenPageRoutingModule } from './profil-einstellungen-routing.module';
@@ -14,7 +15,7 @@ import { ProfilEinstellungenPage } from './profil-einstellungen.page';
     FormsModule,
     IonicModule,
     ProfilEinstellungenPageRoutingModule,
-    HttpClientModule
+    HttpClientModule,
   ],
   declarations: [ProfilEinstellungenPage]
 })

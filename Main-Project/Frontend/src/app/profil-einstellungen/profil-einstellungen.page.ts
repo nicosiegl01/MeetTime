@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { User } from '../User.model';
 import { Observable, of } from "rxjs";
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-profil-einstellungen',
@@ -16,7 +17,8 @@ export class ProfilEinstellungenPage implements OnInit {
   password: Observable<string>;
   age: Observable<number>;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,) { 
+  }
 
   async ngOnInit() {
     let mailAdressOfUser = localStorage.getItem('currentMail');
@@ -30,6 +32,10 @@ export class ProfilEinstellungenPage implements OnInit {
 
   update(){
 
+  }
+
+  cancel(){
+    //this.router.navigate(['mainpage']);
   }
 
 }

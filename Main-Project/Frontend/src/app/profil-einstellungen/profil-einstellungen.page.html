@@ -90,6 +90,12 @@
     </ion-item> -->
   </ion-list>
 
-  <ion-button id="saveButton" expand="block" color="dark">Save changes</ion-button>
+  <div (click)="update()">
+    <ion-icon style="font-size: 400%; color:rgb(80, 200, 120);" name="checkmark-circle"></ion-icon>
+  </div>
+  <div (click)="cancel()">
+    <ion-icon style="font-size: 400%; color:rgb(227,38,54);" name="close-circle"></ion-icon>
+  </div>
+  
 
 </ion-content>
