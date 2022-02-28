@@ -28,4 +28,8 @@ export class ProfilEinstellungenPage implements OnInit {
     
   }
 
+  update(){
+
+  }
+
 }
