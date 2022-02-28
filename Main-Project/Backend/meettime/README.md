@@ -10,6 +10,6 @@ Exportcommand
 
 
 ### RUN IN DOCKER WITH THESE COMMANDS
-- (sudo)./mvnw package 
+- ./mvnw package
 - docker build -f src/main/docker/Dockerfile.jvm -t quarkus/meettime-jvm . 
 - docker run -i --rm -p 8080:8080 -p 5005:5005 -e JAVA_ENABLE_DEBUG="true" quarkus/meettime-jvm

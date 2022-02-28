@@ -1,10 +1,10 @@
 package org.meettime.Services;
 
+import org.meettime.Model.Interest;
 import org.meettime.Model.User;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.sql.DataSource;
-import javax.ws.rs.core.Response;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -137,26 +137,54 @@ public class UserRepository {
         return false;
     }
 
-    /*public Response updateUser(String email, String fname, String lname, String password, String currentPassword) throws Exception {
-        User user = findByEmail(email);
-        System.out.println(user);
-        if (user == null) {
-            return Response.status(Response.Status.NOT_FOUND).build();
-        }
-        return Response.status(Response.Status.OK).build();
+    public List<String> getUserInterests(String id) throws Exception {
+        final String sql = "select ui.\"InterestId\" from \"Meettime\".\"Meettime\".\"User_Interest\" ui where ui.\"UserId\" = " + id + ";";
 
-        if(fname!=null){
-            user.setFname(fname);
+        List<String> interestId = new ArrayList<>();
+
+        try (Connection connection = dataSource.getConnection();
+             PreparedStatement statement = connection.prepareStatement(sql)) {
+            try (ResultSet resultSet = statement.executeQuery()) {
+                while(resultSet.next()) {
+                    interestId.add(resultSet.getString("InterestId"));
+                }
+            }
+            return interestId;
+        } catch (SQLException e) {
+            throw new Exception(e);
         }
-        if(lname!=null){
-            user.setFname(fname);
-        }
-        if(password!=null){
-            if (currentPassword.equals(user.getPassword())) {
-                user.setPassword(password);
+    }
+
+    public List<User> getMatchingUsers(String id) throws Exception {
+        List<String> interestId = getUserInterests(id);
+        List<User> matchingUsers = new ArrayList<>();
+
+        for (String currentId: interestId) {
+            String sql = "select u.id, u.fname, u.lname, u.email, u.password, u.age from \"Meettime\".\"Meettime\".\"User_Interest\" u_i, \"Meettime\".\"Meettime\".\"User\" u where u_i.\"InterestId\" = " + currentId + " and u.id = u_i.\"UserId\" and u_i.\"UserId\" != " + id + ";";
+            try (Connection connection = dataSource.getConnection();
+                 PreparedStatement statement = connection.prepareStatement(sql)) {
+                try (ResultSet resultSet = statement.executeQuery()) {
+                    while(resultSet.next()) {
+                        matchingUsers.add(new User(
+                                resultSet.getString("id"),
+                                resultSet.getString("fname"),
+                                resultSet.getString("lname"),
+                                resultSet.getString("email"),
+                                resultSet.getString("password"),
+                                Integer.parseInt(resultSet.getString("age"))
+                        ));
+                    }
+                }
+            } catch (SQLException e) {
+                throw new Exception(e);
             }
         }
 
-        //return Response.ok().build();
-    }*/
+        for (User user: matchingUsers) {
+            if (user.getId().equals(id)) {
+                matchingUsers.remove(user);
+            }
+        }
+        return matchingUsers;
+    }
 }
