@@ -53,11 +53,11 @@ export class MainpagePage implements OnInit,AfterViewInit{
   dislike(){
     console.log(this.users$);
     console.log("switch");
-    
   }
 
   like(){
     console.log(this.users$);
+    console.log("switch");
   }
 
   useTinderSwipe(cardArray){

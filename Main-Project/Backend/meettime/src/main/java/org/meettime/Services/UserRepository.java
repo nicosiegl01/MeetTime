@@ -4,6 +4,7 @@ import org.meettime.Model.User;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.sql.DataSource;
+import javax.ws.rs.core.Response;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -135,4 +136,27 @@ public class UserRepository {
 
         return false;
     }
+
+    /*public Response updateUser(String email, String fname, String lname, String password, String currentPassword) throws Exception {
+        User user = findByEmail(email);
+        System.out.println(user);
+        if (user == null) {
+            return Response.status(Response.Status.NOT_FOUND).build();
+        }
+        return Response.status(Response.Status.OK).build();
+
+        if(fname!=null){
+            user.setFname(fname);
+        }
+        if(lname!=null){
+            user.setFname(fname);
+        }
+        if(password!=null){
+            if (currentPassword.equals(user.getPassword())) {
+                user.setPassword(password);
+            }
+        }
+
+        //return Response.ok().build();
+    }*/
 }

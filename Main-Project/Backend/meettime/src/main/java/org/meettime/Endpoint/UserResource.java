@@ -5,6 +5,7 @@ import org.meettime.Services.UserRepository;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
+import javax.transaction.Transactional;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -73,4 +74,21 @@ public class UserResource {
                             @PathParam("age") String age) throws Exception {
         return repo.addUser(new User(fname,lname,email,password,Integer.parseInt(age)));
     }
+
+    /*@PUT
+    @Path("/update/{mail}/{fname}/{lname}/{oldPassword}/{currentPassword}")
+    @Transactional
+    public Response update(@PathParam("fname") String fname,
+                                   @PathParam("lname") String lname,
+                                   @PathParam("oldPassword") String oldPw,
+                                   @PathParam("currentPassword") String newPw,
+                                   @PathParam("mail") String mail) throws Exception {
+        System.out.println("in update");
+        if(mail==null){
+            return Response.status(Response.Status.BAD_REQUEST).build();
+        }
+
+        return repo.updateUser(mail,fname,lname,newPw,oldPw);
+    }*/
+
 }
