@@ -3,6 +3,10 @@ ion-content {
     --ion-color:black;
 }
 
+ion-card{
+    border:none;
+}
+
 .buttonMain{
     margin-left:4%;
     width: 44%;
@@ -15,7 +19,7 @@ ion-content {
 }
 
 #entfernung{
-    margin-bottom: 10%;
+    margin-top:15%;
 }
 
 .clickBtn{
@@ -27,4 +31,23 @@ ion-content {
     background: rgba(0,0,0,0.2);
     padding:3%;
     border-radius:2px;
+}
+
+ion-tab-bar{
+    background:white;
+}
+
+.activityBox{
+    margin-top:-20%;
+}
+
+.activity{
+    float:left;
+    color: black;
+    font-size: small;
+    margin:1% 2% 1% 2%;
+    font-weight: 500;
+    background: rgb(228, 228, 228);
+    padding:3% 5% 3% 5%;
+    border-radius: 20px;
 }
