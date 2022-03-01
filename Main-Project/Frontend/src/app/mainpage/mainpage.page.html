@@ -23,7 +23,6 @@
           Alter: {{user.age}} <br>
           Studium: Fitnesstrainer <br>
           Sport: Fitnesstudio <br>
-          nächstes Training: morgen 11:30
     
         </div>
         <br><br>
@@ -39,9 +38,9 @@
         </ion-chip>
       </ion-card-content>
     </ion-card>
+      <ion-icon style="font-size: 400%; color:rgb(227,38,54);" name="close-circle" (click)="dislike()"></ion-icon>
+    <ion-button id="like" class="buttonMain" color="medium" (click)="like()">Like</ion-button>
   </div>
-  <ion-button style="z-index:1000000;" id="dislike" class="buttonMain" color="medium" (click)="dislike()">Dislike</ion-button>
-  <ion-button id="like" class="buttonMain" color="medium" (click)="like()">Like</ion-button>
 </ion-content>
 
 <ion-tabs>

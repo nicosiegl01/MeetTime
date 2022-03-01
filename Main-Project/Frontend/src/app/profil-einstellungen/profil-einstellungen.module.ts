@@ -16,6 +16,7 @@ import { ProfilEinstellungenPage } from './profil-einstellungen.page';
     IonicModule,
     ProfilEinstellungenPageRoutingModule,
     HttpClientModule,
+    
   ],
   declarations: [ProfilEinstellungenPage]
 })

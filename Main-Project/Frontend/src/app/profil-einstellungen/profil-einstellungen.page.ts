@@ -17,7 +17,8 @@ export class ProfilEinstellungenPage implements OnInit {
   password: Observable<string>;
   age: Observable<number>;
 
-  constructor(private http: HttpClient,) { 
+  constructor(private http: HttpClient,private router: Router) { 
+    this.router = router;
   }
 
   async ngOnInit() {
@@ -31,11 +32,11 @@ export class ProfilEinstellungenPage implements OnInit {
   }
 
   update(){
-
+    this.router.navigate(['mainpage']);
   }
 
   cancel(){
-    //this.router.navigate(['mainpage']);
+    this.router.navigate(['mainpage']);
   }
 
 }
