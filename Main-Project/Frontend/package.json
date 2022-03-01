@@ -33,7 +33,8 @@
     "play-sound": "^1.1.5",
     "rxjs": "~6.6.0",
     "tslib": "^2.2.0",
-    "zone.js": "~0.11.4"
+    "zone.js": "~0.11.4",
+    "ngx-build-plus": "^13.0.1"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^13.2.5",
