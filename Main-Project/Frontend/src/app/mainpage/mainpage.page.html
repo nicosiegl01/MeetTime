@@ -42,7 +42,11 @@
 <ion-tabs>
     <ion-icon style="font-size: 400%; color:rgb(255, 255, 255);background:rgba(253, 91, 73, 0.3);border-radius: 50%;padding:0%;float:left;margin-left:25%;margin-bottom:-23%;display: inline-block;" name="close-circle" (click)="dislike()"></ion-icon>
     <ion-icon style="font-size: 400%; color:rgb(255, 255, 255);background:rgba(0, 160, 27, 0.3);border-radius: 50%;overflow: hidden;margin-left:55%;display: inline-block;" name="checkmark-circle" (click)="like()"></ion-icon>
-  <ion-tab-bar slot="bottom">
+
+    <div class="bottom">
+      <ion-icon class="settings" name="settings"></ion-icon>
+    </div>
+<!--   <ion-tab-bar slot="bottom">
       <ion-tab-button tab="schedule">
         <ion-icon name="chatbubbles"></ion-icon>
       </ion-tab-button>
@@ -54,6 +58,6 @@
       <ion-tab-button (click)="switchToContactPage()" tab="about">
         <ion-icon name="settings"></ion-icon>
       </ion-tab-button>
-  </ion-tab-bar>
+  </ion-tab-bar> -->
 </ion-tabs>
 

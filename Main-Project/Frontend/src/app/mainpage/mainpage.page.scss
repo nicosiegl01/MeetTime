@@ -33,9 +33,21 @@ ion-card{
     border-radius:2px;
 }
 
-ion-tab-bar{
-    background:white;
+.bottom {
+    background-color: lightblue;
+    margin: 10%;
+    border-radius: 15px;
+    height: 8%;
 }
+
+.settings{
+    margin-left: 10%;
+    margin-top: 7%;
+    size: 160%;
+    
+}
+
+
 
 .activityBox{
     margin-top:-20%;
