@@ -64,7 +64,12 @@ export class SignUpPage implements OnInit {
     if(emailValue != "" && password == confirmPassword && password != "" && age >= 18 ){
       this.presentAlert('You can now login to your account','Successful Registration');
       this.router.navigate(['login-or-sign-up']);
-      user.createUser(firstname,lastname,emailValue,password,age)
+      localStorage.setItem('mailSignUp', emailValue);
+      localStorage.setItem('firstnameSignUp', firstname);
+      localStorage.setItem('lastnameSignUp', lastname);
+      localStorage.setItem('passwordSignUp', password);
+      localStorage.setItem('ageSignUp', age.toString());
+      //user.createUser(firstname,lastname,emailValue,password,age)
     }
   }
 

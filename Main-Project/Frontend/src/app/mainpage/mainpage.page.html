@@ -5,20 +5,23 @@
     </li>
   </ul> -->
   <div id="cardBox">
-    <ion-card native style="position:absolute;background-color:rgb(255, 255, 255);z-index:0;" *ngFor="let user of (users$ | async); index as i">
+    <div native style="position:absolute;background-color:rgb(255, 255, 255);z-index:0;" *ngFor="let user of (users$ | async); index as i">
       <ion-card-header>
         <div class="imageBox">
-          <img width="90%" src="../../assets/avatar/avatar0.png">
+          <img style="margin-left:12.5%;" width="75%" src="../../assets/avatar/avatar0.png">
         </div>
-        <p id="entfernung">5km entfernt</p>
-        <ion-card-title style="color:black;margin-top:-10%;">{{user.fname}} {{user.lname}}</ion-card-title>
-        <p style="font-weight: bold;">{{user.age}} years old</p>
+  
+
+        <div class="infoBox">
+          <p style="color:black;margin-left: 12.5%;" id="entfernung">5km entfernt</p>
+          <ion-card-title style="color:black;margin-top:-10%;margin-left: 12.5%;">{{user.fname}} {{user.lname}}</ion-card-title>
+          <p style="font-weight: bold;color:black;margin-left: 12.5%;">{{user.age}} years old</p>
+        </div>
       </ion-card-header>
     
       <ion-card-content>
-        <br><br>
 
-        <div class="activityBox">
+        <div class="activityBox" style="margin-top:1%;">
           <div class="activity">⚽️ Football</div>
           <div class="activity">🏎 Formula 1</div>
           <div class="activity">🍔 Food</div>
@@ -35,16 +38,34 @@
           <ion-label color="medium">Basketball</ion-label>
         </ion-chip> -->
       </ion-card-content>
-    </ion-card>
+    </div>
   </div>
 </ion-content>
 
 <ion-tabs>
-    <ion-icon style="font-size: 400%; color:rgb(255, 255, 255);background:rgba(253, 91, 73, 0.3);border-radius: 50%;padding:0%;float:left;margin-left:25%;margin-bottom:-23%;display: inline-block;" name="close-circle" (click)="dislike()"></ion-icon>
-    <ion-icon style="font-size: 400%; color:rgb(255, 255, 255);background:rgba(0, 160, 27, 0.3);border-radius: 50%;overflow: hidden;margin-left:55%;display: inline-block;" name="checkmark-circle" (click)="like()"></ion-icon>
+    <ion-icon style="font-size: 300%; color:rgb(255, 255, 255);background:rgba(253, 91, 73, 0.3);border-radius: 50%;padding:0%;float:left;margin-left:27.5%;margin-bottom:-17.5%;display: inline-block;" name="close-circle" (click)="dislike()"></ion-icon>
+    <ion-icon style="font-size: 300%; color:rgb(255, 255, 255);background:rgba(0, 160, 27, 0.3);border-radius: 50%;overflow: hidden;margin-left:50%;margin-bottom:-0%;display: inline-block;" name="checkmark-circle" (click)="like()"></ion-icon>
 
     <div class="bottom">
-      <ion-icon class="settings" name="settings"></ion-icon>
+      
+      
+      
+      
+      <div class="navitem">
+        <ion-icon name="map-outline"></ion-icon>
+      </div>
+      <div class="navitem">
+        <ion-icon class="settings" name="settings"></ion-icon>
+      </div>
+      <div class="navitem">
+        <ion-icon name="body"></ion-icon>
+      </div>
+      <div class="navitem">
+        <ion-icon name="chatbubbles"></ion-icon>
+      </div>
+      <div class="navitem" (click)="switchToContactPage()">
+        <ion-icon name="person"></ion-icon>
+      </div>
     </div>
 <!--   <ion-tab-bar slot="bottom">
       <ion-tab-button tab="schedule">

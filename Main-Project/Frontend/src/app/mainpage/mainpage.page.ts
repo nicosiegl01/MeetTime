@@ -17,8 +17,10 @@ let middleware = new Middleware();
 export class MainpagePage implements OnInit,AfterViewInit{
   usersToBePresentated:User[] = [];
   users$: Observable<User[]>;
-  dislikedUsers$: Observable<User[]>;
-  likedUsers$: Observable<User[]>;
+  dislikedUsers: User[];
+  likedUsers: User[];
+  userArray:Promise<User[]>
+  userObjectArray:User[]
 
   @ViewChildren(IonCard,{read: ElementRef}) cards: QueryList<ElementRef>
   constructor(private router: Router,private http: HttpClient,private gestureCtrl: GestureController, private zone:NgZone, private plt: Platform) {
@@ -47,18 +49,37 @@ export class MainpagePage implements OnInit,AfterViewInit{
   }
 
   async ngOnInit() {
-    this.users$ = await this.http.get<User[]>("http://localhost:8080/user/getAllUsers")
+    let tempUsers = await this.http.get<User[]>("http://localhost:8080/user/getAllUsers")
+    
+    // @TODO Users need to be randomized before
+    
+
+    
+    this.users$ = tempUsers
   }
 
   dislike(){
-    console.log(this.users$);
-    console.log("switch");
+    this.userArray = this.users$.toPromise()
+    this.userArray.then((val) => this.userObjectArray = val);
+    
+    let user = this.userObjectArray.pop()
+    console.log(user);
+    console.log(this.userObjectArray);
+    window.location.reload();
   }
 
   like(){
+    console.log();
+    
     console.log(this.users$);
-    console.log("switch");
   }
+
+
+
+
+
+
+
 
   useTinderSwipe(cardArray){
     for (let i = 0; i < cardArray.length; i++) {
