@@ -6,11 +6,10 @@ import org.meettime.Services.InterestRepository;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
+import javax.print.attribute.standard.Media;
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 import java.util.List;
 
 @ApplicationScoped
@@ -36,5 +35,19 @@ public class InterestResource {
     @Produces(MediaType.APPLICATION_JSON)
     public Interest getUserById(@PathParam("id") String id) throws Exception {
         return repo.findById(id);
+    }
+
+    @POST
+    @Path("/add/{userid}/{interestid}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Integer addUserInterest(@PathParam("userid") String userid, @PathParam("interestid") String interestid) throws Exception {
+        return repo.addUserInterest(userid, interestid);
+    }
+
+    @DELETE
+    @Path("/delete/{userid}/{interestid}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Integer deleteUserInterest(@PathParam("userid") String userid, @PathParam("interestid") String interestid) throws Exception {
+        return repo.deleteUserInterest(userid, interestid);
     }
 }

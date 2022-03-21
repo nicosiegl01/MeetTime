@@ -187,4 +187,24 @@ public class UserRepository {
         }
         return matchingUsers;
     }
+
+    public Integer updateUser(User user) throws Exception {
+        if (findByEmail(user.getEmail()) == null) {
+            return -1;
+        }
+
+        final String sql = "updae from \"Meettime\".\"Meettime\".\"User\" set fname = " + user.getFname() + "" +
+                ", lname = " + user.getLname() + "" +
+                ", email = " + user.getEmail() + "" +
+                ", password = " + user.getPassword() + "" +
+                ", age = " + user.getAge() + "" +
+                " where email = " + user.getEmail() + ";";
+
+        try (Connection connection = dataSource.getConnection();
+             PreparedStatement statement = connection.prepareStatement(sql)) {
+            return statement.executeUpdate();
+        } catch (Exception e) {
+            throw new Exception(e);
+        }
+    }
 }

@@ -7,6 +7,7 @@ import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 import java.util.List;
 
 @ApplicationScoped
@@ -66,11 +67,32 @@ public class UserResource {
     @POST
     @Path("/{fname}/{lname}/{email}/{password}/{age}")
     @Consumes(MediaType.APPLICATION_JSON)
-    public Integer addUser(@PathParam("fname") String fname,
+    public Object addUser(@PathParam("fname") String fname,
                             @PathParam("lname") String lname,
                             @PathParam("email") String email,
                             @PathParam("password") String password,
                             @PathParam("age") String age) throws Exception {
-        return repo.addUser(new User(fname,lname,email,password,Integer.parseInt(age)));
+        User user = new User(fname,lname,email,password,Integer.parseInt(age));
+        if (repo.addUser(user) == 1) {
+            return user;
+        } else {
+            return Response.Status.INTERNAL_SERVER_ERROR;
+        }
+    }
+
+    @PUT
+    @Path("/{fname}/{lname}/{email}/{password}/{age}")
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Object updateUser(@PathParam("fname") String fname,
+                             @PathParam("lname") String lname,
+                             @PathParam("email") String email,
+                             @PathParam("password") String password,
+                             @PathParam("age") String age) throws Exception {
+        User user = new User(fname,lname,email,password,Integer.parseInt(age));
+        if (repo.updateUser(user) == 1) {
+            return user;
+        } else {
+            return Response.Status.INTERNAL_SERVER_ERROR;
+        }
     }
 }
