@@ -5,7 +5,7 @@
 - Open PGAdmin at via docker dektop
 
 Exportcommand 
-- docker exec -t postgres_container pg_dumpall -c -s -U db-user > ./export.sql
+- docker exec -t postgres_container pg_dumpall -c -s -U meettime > ./export.sql
 
 
 
