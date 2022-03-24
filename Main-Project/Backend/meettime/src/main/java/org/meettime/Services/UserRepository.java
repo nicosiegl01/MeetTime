@@ -13,9 +13,11 @@ import java.util.List;
 public class UserRepository {
 
     private final DataSource dataSource;
+    private final InterestRepository interestRepository;
 
     public UserRepository(DataSource dataSource) {
         this.dataSource = dataSource;
+        this.interestRepository = new InterestRepository(dataSource);;
     }
 
     public User findById(String id) throws Exception {
@@ -137,10 +139,11 @@ public class UserRepository {
         return false;
     }
 
-    public List<String> getUserInterests(String id) throws Exception {
+    public List<Interest> getUserInterests(String id) throws Exception {
         final String sql = "select ui.\"InterestId\" from \"Meettime\".\"Meettime\".\"User_Interest\" ui where ui.\"UserId\" = " + id + ";";
 
         List<String> interestId = new ArrayList<>();
+        List<Interest> interests = new ArrayList<>();
 
         try (Connection connection = dataSource.getConnection();
              PreparedStatement statement = connection.prepareStatement(sql)) {
@@ -149,7 +152,11 @@ public class UserRepository {
                     interestId.add(resultSet.getString("InterestId"));
                 }
             }
-            return interestId;
+
+            for (String s : interestId) {
+                interests.add(interestRepository.findById(s));
+            }
+            return interests;
         } catch (SQLException e) {
             throw new Exception(e);
         }
@@ -186,5 +193,25 @@ public class UserRepository {
             }
         }
         return matchingUsers;
+    }
+
+    public Integer updateUser(User user) throws Exception {
+        if (findByEmail(user.getEmail()) == null) {
+            return -1;
+        }
+
+        final String sql = "updae from \"Meettime\".\"Meettime\".\"User\" set fname = " + user.getFname() + "" +
+                ", lname = " + user.getLname() + "" +
+                ", email = " + user.getEmail() + "" +
+                ", password = " + user.getPassword() + "" +
+                ", age = " + user.getAge() + "" +
+                " where email = " + user.getEmail() + ";";
+
+        try (Connection connection = dataSource.getConnection();
+             PreparedStatement statement = connection.prepareStatement(sql)) {
+            return statement.executeUpdate();
+        } catch (Exception e) {
+            throw new Exception(e);
+        }
     }
 }
