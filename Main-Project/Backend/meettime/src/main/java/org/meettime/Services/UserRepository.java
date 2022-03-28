@@ -163,11 +163,11 @@ public class UserRepository {
     }
 
     public List<User> getMatchingUsers(String id) throws Exception {
-        List<String> interestId = getUserInterests(id);
+        List<Interest> interestId = getUserInterests(id);
         List<User> matchingUsers = new ArrayList<>();
 
-        for (String currentId: interestId) {
-            String sql = "select u.id, u.fname, u.lname, u.email, u.password, u.age from \"Meettime\".\"Meettime\".\"User_Interest\" u_i, \"Meettime\".\"Meettime\".\"User\" u where u_i.\"InterestId\" = " + currentId + " and u.id = u_i.\"UserId\" and u_i.\"UserId\" != " + id + ";";
+        for (Interest currentInterest: interestId) {
+            String sql = "select u.id, u.fname, u.lname, u.email, u.password, u.age from \"Meettime\".\"Meettime\".\"User_Interest\" u_i, \"Meettime\".\"Meettime\".\"User\" u where u_i.\"InterestId\" = " + currentInterest.getId() + " and u.id = u_i.\"UserId\" and u_i.\"UserId\" != " + id + ";";
             try (Connection connection = dataSource.getConnection();
                  PreparedStatement statement = connection.prepareStatement(sql)) {
                 try (ResultSet resultSet = statement.executeQuery()) {
@@ -196,16 +196,17 @@ public class UserRepository {
     }
 
     public Integer updateUser(User user) throws Exception {
+        User currentUser = findById(user.getId());
         if (findByEmail(user.getEmail()) == null) {
             return -1;
         }
 
-        final String sql = "updae from \"Meettime\".\"Meettime\".\"User\" set fname = " + user.getFname() + "" +
-                ", lname = " + user.getLname() + "" +
-                ", email = " + user.getEmail() + "" +
-                ", password = " + user.getPassword() + "" +
+        final String sql = "update \"Meettime\".\"Meettime\".\"User\" set fname = '" + user.getFname() + "'" +
+                ", lname = '" + user.getLname() + "'" +
+                ", email = '" + user.getEmail() + "'" +
+                ", password = '" + user.getPassword() + "'" +
                 ", age = " + user.getAge() + "" +
-                " where email = " + user.getEmail() + ";";
+                " where id = " + currentUser.getId() + ";";
 
         try (Connection connection = dataSource.getConnection();
              PreparedStatement statement = connection.prepareStatement(sql)) {

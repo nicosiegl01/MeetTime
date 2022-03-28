@@ -22,9 +22,9 @@ public class InterestRepository {
     }
 
     public Interest findById(String id) throws Exception {
-        final String sql = "select Id, Name" +
-                " from \"Meettime\".\"Meettime\".\"Interest\" i" +
-                "where id = " + id + ";";
+        final String sql = "select \"Interest\".\"Id\",\"Interest\".\"Name\" " +
+                "from \"Meettime\".\"Meettime\".\"Interest\" " +
+                "where \"Interest\".\"Id\" = " + id + ";";
 
         try (Connection connection = dataSource.getConnection();
              PreparedStatement statement = connection.prepareStatement(sql)) {
@@ -43,7 +43,7 @@ public class InterestRepository {
     }
 
     public List<Interest> getAll() throws Exception {
-        final String sql = "select \"Id\", \"Name\"" +
+        final String sql = "select \"Interest\".\"Id\",\"Interest\".\"Name\" " +
                 " from \"Meettime\".\"Meettime\".\"Interest\";";
 
         List<Interest> interests = new ArrayList<>();
@@ -65,7 +65,7 @@ public class InterestRepository {
     }
 
     public Integer addUserInterest(String userId, String interestId) throws Exception {
-        final String sql = "insert into \"Meettime\".\"Meettime\".\"User_Interest\" (UserId, InterestId) " +
+        final String sql = "insert into \"Meettime\".\"Meettime\".\"User_Interest\" (\"UserId\", \"InterestId\") " +
                 "values(" + userId + ", " + interestId + ")";
         try (Connection connection = dataSource.getConnection();
              PreparedStatement statement = connection.prepareStatement(sql)) {
@@ -77,7 +77,7 @@ public class InterestRepository {
 
     public Integer deleteUserInterest(String userid, String interestid) throws Exception {
         final String sql = "delete from \"Meettime\".\"Meettime\".\"User_Interest\"" +
-                "where UserId = " + userid + " and InterestId = " + interestid + ";";
+                "where \"User_Interest\".\"UserId\" = " + userid + " and \"User_Interest\".\"InterestId\" = " + interestid + ";";
         try (Connection connection = dataSource.getConnection();
              PreparedStatement statement = connection.prepareStatement(sql)) {
             return statement.executeUpdate();
