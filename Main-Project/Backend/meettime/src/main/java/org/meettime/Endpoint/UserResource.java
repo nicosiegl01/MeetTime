@@ -51,17 +51,17 @@ public class UserResource {
     }
 
     @GET
-    @Path("/getUserInterests/{id}")
-    @Produces(MediaType.APPLICATION_JSON)
-    public List<Interest> getUserInterests(@PathParam("id") String id) throws Exception {
-        return repo.getUserInterests(id);
-    }
-
-    @GET
     @Path("/getMatchingUsers/{id}")
     @Produces(MediaType.APPLICATION_JSON)
     public List<User> getMatchingUsers(@PathParam("id") String id) throws Exception {
         return repo.getMatchingUsers(id);
+    }
+
+    @GET
+    @Path("/getUserInterests/{id}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<Interest> getUserInterests(@PathParam("id") String id) throws Exception {
+        return repo.getUserInterests(id);
     }
 
     @DELETE
@@ -76,7 +76,7 @@ public class UserResource {
     }
 
     @POST
-    @Path("/{fname}/{lname}/{email}/{password}/{age}")
+    @Path("/add/{fname}/{lname}/{email}/{password}/{age}")
     @Consumes(MediaType.APPLICATION_JSON)
     public Object addUser(@PathParam("fname") String fname,
                             @PathParam("lname") String lname,
@@ -85,21 +85,22 @@ public class UserResource {
                             @PathParam("age") String age) throws Exception {
         User user = new User(fname,lname,email,password,Integer.parseInt(age));
         if (repo.addUser(user) == 1) {
-            return user;
+            return repo.findByEmail(email);
         } else {
             return Response.Status.INTERNAL_SERVER_ERROR;
         }
     }
 
     @PUT
-    @Path("/{fname}/{lname}/{email}/{password}/{age}")
+    @Path("/update/{id}/{fname}/{lname}/{email}/{password}/{age}")
     @Consumes(MediaType.APPLICATION_JSON)
-    public Object updateUser(@PathParam("fname") String fname,
+    public Object updateUser(@PathParam("id") String id,
+                             @PathParam("fname") String fname,
                              @PathParam("lname") String lname,
                              @PathParam("email") String email,
                              @PathParam("password") String password,
                              @PathParam("age") String age) throws Exception {
-        User user = new User(fname,lname,email,password,Integer.parseInt(age));
+        User user = new User(id,fname,lname,email,password,Integer.parseInt(age));
         if (repo.updateUser(user) == 1) {
             return user;
         } else {
