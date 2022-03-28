@@ -3,7 +3,12 @@
   <p id="p">Choose your favorite activities you do in your freettime</p>
   <!-- <hr id="hr"> --> 
     <ion-searchbar animated placeholder="Search activity"></ion-searchbar>
-  <ion-grid>
+
+  <div *ngFor="let activity of (activities | async)">
+    {{ activity }} a
+  </div>
+
+<!--   <ion-grid>
     <ion-row>
       <ion-col>
         <img class="img" alt="Party" src="../../assets/images/party.jpg">
@@ -74,5 +79,5 @@
         <div class="centered">EAT</div>
       </ion-col>
     </ion-row>
-  </ion-grid>
+  </ion-grid> -->
 </ion-content>

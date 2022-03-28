@@ -5,7 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 
 import { ActivityPageRoutingModule } from './activity-routing.module';
-
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { ActivityPage } from './activity.page';
 
 @NgModule({
@@ -13,7 +13,8 @@ import { ActivityPage } from './activity.page';
     CommonModule,
     FormsModule,
     IonicModule,
-    ActivityPageRoutingModule
+    ActivityPageRoutingModule,
+    HttpClientModule
   ],
   declarations: [ActivityPage]
 })

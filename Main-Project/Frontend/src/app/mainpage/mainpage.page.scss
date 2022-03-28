@@ -34,15 +34,16 @@ ion-card{
 }
 
 .bottom {
-    background-color: lightblue;
-    margin: 10%;
+    background-color: lightsteelblue;
+    margin: 6%;
     border-radius: 15px;
     height: 8%;
+    margin-bottom: 10%;
 }
 
 .navitem{
     float:left;
-    margin:4.5%;
+    margin: 4.7%;
     font-size:140%;
     text-align: center;
 }
@@ -51,26 +52,31 @@ ion-card{
     margin-left: 10%;
     margin-top: 7%;
     size: 160%;
-    
+
 }
 
 .imageBox{
-    
+    margin-top: 10%
 }
 
 
 
 .activityBox{
-    margin-top:-20%;
 }
 
 .activity{
+    
     float:left;
     color: black;
     font-size: small;
-    margin:1% 2% 1% 2%;
+    margin:1% 2% 3% 2%;
     font-weight: 500;
     background: rgb(228, 228, 228);
-    padding:3% 5% 3% 5%;
+    padding:2% 6% 2% 6%;
     border-radius: 20px;
+}
+
+svg{
+    margin-left: 10%;
+    float: left;
 }
