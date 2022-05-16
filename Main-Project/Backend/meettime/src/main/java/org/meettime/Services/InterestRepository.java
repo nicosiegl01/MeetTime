@@ -21,10 +21,10 @@ public class InterestRepository {
         this.dataSource = dataSource;
     }
 
-    public Interest findById(String id) throws Exception {
+    public Interest findById(String Id) throws Exception {
         final String sql = "select \"Interest\".\"Id\",\"Interest\".\"Name\" " +
                 "from \"Meettime\".\"Meettime\".\"Interest\" " +
-                "where \"Interest\".\"Id\" = " + id + ";";
+                "where \"Interest\".\"Id\" = " + Id + ";";
 
         try (Connection connection = dataSource.getConnection();
              PreparedStatement statement = connection.prepareStatement(sql)) {

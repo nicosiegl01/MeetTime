@@ -2,6 +2,7 @@ package org.meettime.Services;
 
 import org.meettime.Model.Interest;
 import org.meettime.Model.User;
+import org.w3c.dom.ls.LSOutput;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.sql.DataSource;
@@ -130,6 +131,7 @@ public class UserRepository {
 
     public boolean login(String email, String password) throws Exception {
         User user = findByEmail(email);
+        System.out.println("login");
         if (user == null) return false;
 
         if (password.equals(user.getPassword())) {
@@ -140,14 +142,20 @@ public class UserRepository {
     }
 
     public List<Interest> getUserInterests(String id) throws Exception {
+        System.out.println("test");
         final String sql = "select ui.\"InterestId\" from \"Meettime\".\"Meettime\".\"User_Interest\" ui where ui.\"UserId\" = " + id + ";";
 
         List<String> interestId = new ArrayList<>();
         List<Interest> interests = new ArrayList<>();
+        System.out.println("test");
 
         try (Connection connection = dataSource.getConnection();
              PreparedStatement statement = connection.prepareStatement(sql)) {
+            System.out.println("test");
+
             try (ResultSet resultSet = statement.executeQuery()) {
+                System.out.println("test");
+
                 while(resultSet.next()) {
                     interestId.add(resultSet.getString("InterestId"));
                 }
@@ -156,6 +164,7 @@ public class UserRepository {
             for (String s : interestId) {
                 interests.add(interestRepository.findById(s));
             }
+            System.out.println(interests);
             return interests;
         } catch (SQLException e) {
             throw new Exception(e);

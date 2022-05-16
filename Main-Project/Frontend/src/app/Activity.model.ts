@@ -1,7 +1,7 @@
 export class Activity {
     constructor(
         private _id: number, 
-        private _activity: string
+        private _name: string
     ){}
 
     get id(): number {
@@ -12,11 +12,11 @@ export class Activity {
         this._id = value;
       }
 
-      get activity(): string {
-        return this._activity;
+      get name(): string {
+        return this._name;
       }
     
-      set activity(value: string) {
-        this._activity = value;
+      set name(value: string) {
+        this._name = value;
       }
 }

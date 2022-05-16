@@ -41,17 +41,10 @@
 
     <h1 id="headline1" position="stacked">Activities</h1>
     <ion-item>
-      <ion-chip>
-        <ion-label color="dark">Football</ion-label>
-        <ion-icon name="close-circle"></ion-icon>
-      </ion-chip>
-      <ion-chip>
-        <ion-label color="dark">F1</ion-label>
-        <ion-icon name="close-circle"></ion-icon>
-      </ion-chip>
-      <ion-chip>
-        <ion-label color="dark">Basketball</ion-label>
-        <ion-icon name="close-circle"></ion-icon>
+      <ion-chip *ngFor="let a of (aktivitys$ | async);let index as i">
+        <ion-label color="dark">{{a.name}}</ion-label>
+        <ion-icon (click)="delete(a)" name="close-circle"></ion-icon>
+        <br>
       </ion-chip>
     </ion-item>
 

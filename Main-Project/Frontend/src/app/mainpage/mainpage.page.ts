@@ -5,6 +5,8 @@ import { User } from '../User.model';
 import { Observable, of } from "rxjs";
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Gesture, GestureController, IonCard, Platform } from '@ionic/angular';
+import { UserService } from '../user.service';
+import { Activity } from '../Activity.model';
 
 
 let middleware = new Middleware();
@@ -16,14 +18,14 @@ let middleware = new Middleware();
 })
 export class MainpagePage implements OnInit,AfterViewInit{
   usersToBePresentated:User[] = [];
-  users$: Observable<User[]>;
-  dislikedUsers: User[];
-  likedUsers: User[];
+  users$:User[] = [];
+  dislikedUsers: User[] = [];
+  likedUsers: User[] = [];
   userArray:Promise<User[]>
   userObjectArray:User[]
 
-  @ViewChildren(IonCard,{read: ElementRef}) cards: QueryList<ElementRef>
-  constructor(private router: Router,private http: HttpClient,private gestureCtrl: GestureController, private zone:NgZone, private plt: Platform) {
+  @ViewChildren('divs',{read: ElementRef}) cards: QueryList<ElementRef>
+  constructor(private userS:UserService,private router: Router,private http: HttpClient,private gestureCtrl: GestureController, private zone:NgZone, private plt: Platform) {
     this.router = router;
   }
 
@@ -49,30 +51,71 @@ export class MainpagePage implements OnInit,AfterViewInit{
   }
 
   async ngOnInit() {
-    let tempUsers = await this.http.get<User[]>("http://localhost:8080/user/getAllUsers")
+    let tempUsers = await this.http.get<User[]>("http://130.162.254.211:8080/user/getAllUsers")
+    console.log(tempUsers);
     
     // @TODO Users need to be randomized before
     
+/*
+private _id: number,
+      private _firstname: string,
+      private _lastname: string,
+      private _mail: string,
+      private _password: string,
+      private _age: number
+*/
 
+    let user = [
+      
+    ]
     
-    this.users$ = tempUsers
+    //this.users$ = tempUsers
+    //this.users$ = new Observable<User[]>()
+    this.users$ = this.userS.getUsers()
+    console.log(this.users$);
+    
+    
   }
 
   dislike(){
-    this.userArray = this.users$.toPromise()
-    this.userArray.then((val) => this.userObjectArray = val);
+    this.users$.shift()
+    console.log(this.users$[0]);
+    console.log('dislike');
     
-    let user = this.userObjectArray.pop()
-    console.log(user);
-    console.log(this.userObjectArray);
-    window.location.reload();
+    console.log(this.users$);
+    
   }
 
   like(){
-    console.log();
+    console.log(this.users$[0]);
+    this.likedUsers.push(this.users$[0])
+    console.log(this.likedUsers);
+    console.log('like');
     
-    console.log(this.users$);
+    this.users$.shift()
   }
+
+
+  getActivities(actId:number):Activity[]{
+    let activities:Activity[] = []
+    let temp = this.http.get<Activity[]>('http://130.162.254.211:8080/user/getUserInterests/'+actId);
+    temp.subscribe(param=>{
+      activities = param
+    })
+    return activities
+  }
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -82,7 +125,11 @@ export class MainpagePage implements OnInit,AfterViewInit{
 
 
   useTinderSwipe(cardArray){
+    console.log('test123');
+    
     for (let i = 0; i < cardArray.length; i++) {
+      console.log(i);
+      
       const card = cardArray[i]
       const gesture: Gesture = this.gestureCtrl.create({
         el: card.nativeElement,
@@ -107,7 +154,7 @@ export class MainpagePage implements OnInit,AfterViewInit{
           }
         }
       }, true);
-      gesture.enable(true )
+      gesture.enable(true)
     }
   }
 

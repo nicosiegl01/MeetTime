@@ -5,7 +5,16 @@ import { User } from '../User.model';
 export class Middleware {
   createUser(fname,lname,mail,pw,age){
     // User data from input-fields
-    fetch('http://localhost:8080/user/'+fname+'/'+lname+'/'+mail+'/'+pw+'/'+age, {
+    fetch('http://130.162.254.211:8080/user/add/'+fname+'/'+lname+'/'+mail+'/'+pw+'/'+age, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' }
+  }).then(result => result.json())
+  .then(jsonformat=>console.log(jsonformat));
+  }
+
+  addInterest(uId, iId){
+    // User data from input-fields
+    fetch('http://130.162.254.211:8080/interest/add/'+uId+'/'+iId, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' }
   }).then(result => result.json())
@@ -14,7 +23,7 @@ export class Middleware {
 
   loginUser(mail,pw){
     // User data from input-fields
-    fetch('http://localhost:8080/user/'+mail+'/'+pw, {
+    fetch('http://130.162.254.211:8080/user/'+mail+'/'+pw, {
     method: 'GET',
     headers: { 'Content-Type': 'application/json' }
   }).then(result => result.json())

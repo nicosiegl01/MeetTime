@@ -1,12 +1,20 @@
 <ion-content color="light">
-  <h1 id="h1">Welcome</h1>
   <p id="p">Choose your favorite activities you do in your freettime</p>
-  <!-- <hr id="hr"> --> 
-    <ion-searchbar animated placeholder="Search activity"></ion-searchbar>
+  <!-- <hr id="hr"> -->
+    <ion-searchbar id="bar" animated placeholder="Search activity"></ion-searchbar>
 
-  <div *ngFor="let activity of (activities | async)">
-    {{ activity }} a
+  <div *ngFor="let a of (activities$ | async)">
+    <div class="activitat" (click)="check(a.name)">
+      <img src="../../assets/images/{{a.name}}.png" width="100%">
+    <br>
+    <h5 [ngStyle]="{color: isSelected()?'green':'black'}">{{a.name}}</h5>
+    </div>
   </div>
+
+
+  <button (click)="complete()">
+    Complete Registration
+  </button>
 
 <!--   <ion-grid>
     <ion-row>

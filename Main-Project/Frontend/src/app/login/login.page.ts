@@ -36,7 +36,7 @@ export class LoginPage implements OnInit {
   ngOnInit() {
   } 
 
-  Login(){
+  async Login(){
     let emailValue = (<HTMLInputElement>document.getElementById("email")).value;
     let password = (<HTMLInputElement>document.getElementById("password")).value;
     let isAllowedToSwitch = false;
@@ -55,7 +55,8 @@ export class LoginPage implements OnInit {
     return;
    }
 
-   let user = this.http.get<User[]>("http://localhost:8080/user/"+emailValue+"/"+password)
+   let user = await this.http.get<User[]>("http://130.162.254.211:8080/user/"+emailValue+"/"+password)
+   
 
    console.log(user);
    
@@ -81,6 +82,7 @@ console.log("before switch");
     }
 
     */
+   this.switchView(true)
 
   }
 

@@ -1,0 +1,6 @@
+{
+	"appId": "io.ionic.starter",
+	"appName": "MeetTime-MainProject",
+	"webDir": "www",
+	"bundledWebRuntime": false
+}

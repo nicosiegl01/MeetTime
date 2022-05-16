@@ -40,6 +40,7 @@ public class UserResource {
     @Path("/getAllUsers")
     @Produces(MediaType.APPLICATION_JSON)
     public List<User> getUserById() throws Exception {
+        System.out.println("lol");
         return repo.getAll();
     }
 
@@ -61,6 +62,7 @@ public class UserResource {
     @Path("/getUserInterests/{id}")
     @Produces(MediaType.APPLICATION_JSON)
     public List<Interest> getUserInterests(@PathParam("id") String id) throws Exception {
+        System.out.println("in res");
         return repo.getUserInterests(id);
     }
 
@@ -100,6 +102,7 @@ public class UserResource {
                              @PathParam("email") String email,
                              @PathParam("password") String password,
                              @PathParam("age") String age) throws Exception {
+        System.out.println("lol");
         User user = new User(id,fname,lname,email,password,Integer.parseInt(age));
         if (repo.updateUser(user) == 1) {
             return user;

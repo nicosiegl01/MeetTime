@@ -2,13 +2,19 @@
     background-color: #fff;
 }
 
-.img{
+.activitat{
     // border-radius: 20px;
-    opacity: 0.5;
-    width: 90vw;
-    height: 30vw;
+    width: 45%;
     color: #000;
-    border-radius: 50%;
+    margin-left:3.25%;
+    float:left;
+    margin-bottom: 5%;
+}
+
+h5{
+    font-family: 'Arial';
+    font-size: 90%;
+    text-align: center;
 }
 
 .img:hover{
@@ -50,4 +56,8 @@
 
 ion-col{
     margin-bottom: 20%;
+}
+
+ion-searchbar{
+    border-radius: 25px;
 }

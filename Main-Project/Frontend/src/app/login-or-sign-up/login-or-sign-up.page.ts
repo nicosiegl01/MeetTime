@@ -52,7 +52,7 @@ export class LoginOrSignUpPage implements OnInit {
         return;
        }
     
-       let user = await this.http.get<boolean>("http://localhost:8080/user/"+emailValue+"/"+password)
+       let user = await this.http.get<boolean>("http://130.162.254.211:8080/user/"+emailValue+"/"+password)
        console.log(user.forEach(data=>console.log(data)));
        await user.forEach(data=>this.userDoesExist=data);
        console.log(this.userDoesExist);
@@ -65,7 +65,7 @@ export class LoginOrSignUpPage implements OnInit {
       return
     }else{
       isAllowedToSwitch = true;
-      localStorage.setItem('currentMail', emailValue);
+      localStorage.setItem('mailSignUp', emailValue);
     }
 
     if(isAllowedToSwitch){
