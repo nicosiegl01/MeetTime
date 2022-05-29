@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
-import { User } from '../User.model';
+import { User } from '../User';
 import { Observable, of } from "rxjs";
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 
@@ -31,7 +31,8 @@ export class LoginOrSignUpPage implements OnInit {
   }
 
   async Login(){
-    this.playSound()
+
+    
 
     let emailValue = (<HTMLInputElement>document.getElementById("email")).value;
     let password = (<HTMLInputElement>document.getElementById("password")).value;
@@ -52,10 +53,20 @@ export class LoginOrSignUpPage implements OnInit {
         return;
        }
     
-       let user = await this.http.get<boolean>("http://130.162.254.211:8080/user/"+emailValue+"/"+password)
+       let user = await this.http.get<User>("http://130.162.254.211:3000/api/user/getByMail/"+emailValue)
+       user.subscribe(userParam=>{
+         localStorage.setItem("mail",userParam.email)
+         localStorage.setItem("fname",userParam.firstname)
+         localStorage.setItem("lname",userParam.lastname)
+         localStorage.setItem("id",userParam.id+"")
+         //localStorage.setItem("lat",userParam.latitude + "")
+         //localStorage.setItem("long",userParam.longitude + "")
+         //localStorage.setItem("id",userParam.id + "")
+
+       })
        console.log(user.forEach(data=>console.log(data)));
-       await user.forEach(data=>this.userDoesExist=data);
        console.log(this.userDoesExist);
+       this.userDoesExist = true
        
 
 
@@ -69,6 +80,7 @@ export class LoginOrSignUpPage implements OnInit {
     }
 
     if(isAllowedToSwitch){
+      this.playSound()
       this.switchView(true)
     }
 

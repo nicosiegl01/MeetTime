@@ -35,7 +35,7 @@ export class SignUpPage implements OnInit {
     //let emailValue2 = (<HTMLInputElement>document.getElementById("confirmEmail")).value;
     let password = (<HTMLInputElement>document.getElementById("PW")).value;
     let confirmPassword = (<HTMLInputElement>document.getElementById("PW2")).value;
-    const age = Number((<HTMLInputElement>document.getElementById("age")).value);
+    const age = (<HTMLInputElement>document.getElementById("age")).value;
     const firstname = (<HTMLInputElement>document.getElementById("firstnameInput")).value;
     const lastname = (<HTMLInputElement>document.getElementById("lastnameInput")).value;
     const errHeader = "Missing Attribute"
@@ -57,11 +57,11 @@ export class SignUpPage implements OnInit {
       this.presentAlert("You must enter a mail adress",errHeader)
       return;
     }
-    if (age < 18) {
+    if (age=="") {
       this.presentAlert("You are to young",errHeader)
       return;
     }
-    if(emailValue != "" && password == confirmPassword && password != "" && age >= 18 ){
+    if(emailValue != "" && password == confirmPassword && password != "" && age != "" ){
       this.presentAlert('You can now complete your registration','Successful');
       this.router.navigate(['activity']);
       localStorage.setItem('mailSignUp', emailValue);
@@ -69,6 +69,8 @@ export class SignUpPage implements OnInit {
       localStorage.setItem('lastnameSignUp', lastname);
       localStorage.setItem('passwordSignUp', password);
       localStorage.setItem('ageSignUp', age.toString());
+      console.log(age.toString());
+      
       await user.createUser(firstname,lastname,emailValue,password,age)
       this.router.navigate(['activity'])
     }

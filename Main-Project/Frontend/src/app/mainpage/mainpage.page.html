@@ -13,19 +13,20 @@
   
 
         <div class="infoBox">
-          <ion-card-title style="margin-left: 1.5%; color:black; margin-top: 5%; font-weight: bolder;">{{user._firstname}} {{user.lname}}</ion-card-title>
-          <p style=" margin-left: 1.5%; font-weight: normal;color: lightgrey;">{{user.age}} years old</p>
+          <ion-card-title style="margin-left: 1.5%; color:black; margin-top: 5%; font-weight: bolder;">{{user.firstname}} {{user.lastname}}</ion-card-title>
+          <p style=" margin-left: 1.5%; font-weight: normal;color: lightgrey;">{{getAge(user)}} years old</p>
           <p style="margin-left: 1.5%; font-weight: normal;color: black; margin-top: -7%; margin-bottom: 17%;">5 km entfernt</p>
         </div>
       </ion-card-header>
     
       <ion-card-content>
-        <!--<div class="activityBox" style="margin-top:-15%;" *ngFor="let act of getActivities(0)" >-->
-          <div class="activityBox" style="margin-top:-15%;">
-          <!--<div class="activity">⚽️ Football</div>
+        <div class="activityBox" style="margin-top:-15%;" >
+          <!--<div class="activityBox" style="margin-top:-15%;" *ngFor="let act of getActivities(user.id)">-->
+          <div class="activity">⚽️ Football</div>
           <div class="activity">🏎 Formula 1</div>
           <div class="activity">🍔 Food</div>
-          <div class="activity">📸 Photography</div>-->
+          <div class="activity">📸 Photography</div>
+          <!--<div class="activity">{{act}}</div>-->
         </div>
     
         <!-- <ion-chip>

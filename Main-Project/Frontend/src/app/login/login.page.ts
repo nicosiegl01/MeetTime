@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AlertController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { Middleware } from "../middleware/Middleware";
-import { User } from '../User.model';
+import { User } from '../User';
 import { Observable, of } from "rxjs";
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 

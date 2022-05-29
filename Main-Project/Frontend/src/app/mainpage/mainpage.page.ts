@@ -1,12 +1,13 @@
 import { Component, OnInit, NgZone, QueryList, ViewChildren, ElementRef, AfterViewInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Middleware } from "../middleware/Middleware";
-import { User } from '../User.model';
+import { User } from '../User';
 import { Observable, of } from "rxjs";
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Gesture, GestureController, IonCard, Platform } from '@ionic/angular';
 import { UserService } from '../user.service';
 import { Activity } from '../Activity.model';
+import { MatchResponse } from '../MatchResponse';
 
 
 let middleware = new Middleware();
@@ -51,8 +52,8 @@ export class MainpagePage implements OnInit,AfterViewInit{
   }
 
   async ngOnInit() {
-    let tempUsers = await this.http.get<User[]>("http://130.162.254.211:8080/user/getAllUsers")
-    console.log(tempUsers);
+    //let tempUsers = await this.http.get<User[]>("http://130.162.254.211:8080/user/getAllUsers")
+    //console.log(tempUsers);
     
     // @TODO Users need to be randomized before
     
@@ -71,7 +72,18 @@ private _id: number,
     
     //this.users$ = tempUsers
     //this.users$ = new Observable<User[]>()
-    this.users$ = this.userS.getUsers()
+    let users = this.http.get<User[]>("http://130.162.254.211:3000/api/user/getAll")
+    users.subscribe(param=>{
+      this.users$ = param
+      console.log(param);
+      
+    })
+
+    /* this.userS.getUsers().subscribe(param=>{
+      this.users$ = param
+      console.log(param);
+      
+    }) */
     console.log(this.users$);
     
     
@@ -92,17 +104,48 @@ private _id: number,
     console.log(this.likedUsers);
     console.log('like');
     
-    this.users$.shift()
+    let temp:User = this.users$.shift()
+    console.log(temp.id);
+    console.log(localStorage.getItem('id'));
+    
+    
+    
+    let temp2 = this.http.post<MatchResponse>("http://130.162.254.211:3000/api/match", {
+        "userLiking": Number(localStorage.getItem('id')),
+        "userLiked": temp.id
+    });
+
+    temp2.subscribe(x=>{
+      console.log(x);
+      
+    })
+    
   }
 
 
-  getActivities(actId:number):Activity[]{
+  getActivities(uId:number):Activity[]{
+    console.log(uId);
+    
     let activities:Activity[] = []
-    let temp = this.http.get<Activity[]>('http://130.162.254.211:8080/user/getUserInterests/'+actId);
+    let temp = this.http.get<Activity[]>('http://130.162.254.211:3000/api/user/findInterestsFrom/'+uId);
     temp.subscribe(param=>{
       activities = param
+      console.log(param);
+      
     })
     return activities
+  }
+
+
+  getAge(user:User){
+    var today = new Date();
+    var birthDate = new Date(user.birthdate)
+    var age = today.getFullYear() - birthDate.getFullYear();
+    var m = today.getMonth() - birthDate.getMonth();
+    if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+        age--;
+    }
+    return age;
   }
 
 
@@ -146,15 +189,21 @@ private _id: number,
           console.log("in gesture");
           
           if(event.deltaX>150){
+            console.log('test1');
             card.nativeElement.style.transform = `translateX(${+this.plt.width()*2}px) rotate(${event.deltaX / 2}deg)`
           } else if(event.deltaX<-150){
+            console.log('test2');
             card.nativeElement.style.transform = `translateX(-${+this.plt.width()*2}px) rotate(${event.deltaX / 2}deg)`
           }else{
+            console.log('test3');
             card.nativeElement.style.transform = ''
           }
         }
       }, true);
+      
       gesture.enable(true)
+      console.log(gesture);
+
     }
   }
 

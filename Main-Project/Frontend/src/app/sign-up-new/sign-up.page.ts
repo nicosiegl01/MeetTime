@@ -34,6 +34,8 @@ export class SignUpPage implements OnInit {
     let password = (<HTMLInputElement>document.getElementById("password")).value;
     let confirmPassword = (<HTMLInputElement>document.getElementById("confirmPassword")).value;
     const age = Number((<HTMLInputElement>document.getElementById("age")).value);
+    console.log(age);
+    
 
     if (password == confirmPassword && password != "" && confirmPassword != "" && emailValue != emailValue2 || emailValue == "" || emailValue2 == "") {
       this.presentAlert('Wrong E-Mail!');

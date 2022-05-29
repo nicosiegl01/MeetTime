@@ -3,9 +3,11 @@ import { Observable } from 'rxjs';
 import { Activity } from '../Activity.model';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { AlertController } from '@ionic/angular';
-import { User } from '../User.model';
+import { User } from '../User';
 import { Middleware } from "../middleware/Middleware";
 import { Router } from '@angular/router';
+import { UserService } from '../user.service';
+import { UserToSend } from '../UserToSend';
 
 let middleware = new Middleware();
 
@@ -25,6 +27,9 @@ export class ActivityPage implements OnInit {
   selected:Activity[] = []
   length:number = 0
 
+  latitude:number=0;
+  longitude:number=0;
+
   constructor(private http:HttpClient, private alertController:AlertController, private router:Router) { }
 
   async presentAlert(msg,head) {
@@ -41,10 +46,31 @@ export class ActivityPage implements OnInit {
     console.log('onDidDismiss resolved with role', role);
   }
 
-  async ngOnInit() {
-    let actvitiesTemp = await this.http.get<Activity[]>("http://130.162.254.211:8080/interest/getAllInterests")
-    this.activities$ = actvitiesTemp
+  async showPosition(position) {
     console.log('test');
+    
+    console.log(position.coords.longitude);
+    console.log(position.coords.latitude);
+
+    this.latitude = await position.coords.latitude;
+    this.longitude = await position.coords.longitude;
+    console.log(this.latitude);
+    console.log(this.longitude);
+  }
+
+  getLocation() {
+    console.log('in loc');
+    console.log(navigator.geolocation);
+    
+    
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(this.showPosition);
+    }
+  }
+
+  async ngOnInit() {
+    let actvitiesTemp = await this.http.get<Activity[]>("http://130.162.254.211:3000/api/interest/getAll")
+    this.activities$ = actvitiesTemp
     console.log(actvitiesTemp);
     
     actvitiesTemp.forEach(item=>console.log(item))
@@ -124,6 +150,8 @@ return false;
     }
 
     async complete(){
+      console.log('in complete');
+      
       if(this.selected.length<=2){
         let tempLen = this.selected.length
         this.presentAlert('You need to enter at least 3 activities and you entered ' + tempLen,'Not Finished Yet')
@@ -131,32 +159,88 @@ return false;
       }
 
       //await middleware.createUser(localStorage.getItem('firstnameSignUp'),localStorage.getItem('lastnameSignUp'),localStorage.getItem('mailSignUp'),localStorage.getItem('passwordSignUp'),localStorage.getItem('ageSignUp'));
-      let a = ""
-      this.http.post("http://130.162.254.211:8080/user/"+localStorage.getItem('firstnameSignUp')+"/"+localStorage.getItem('lastnameSignUp')+"/"+localStorage.getItem('mailSignUp')+"/"+localStorage.getItem('passwordSignUp')+"/"+localStorage.getItem('ageSignUp') , {})
-      this.setActivities()
+      //localStorage.getItem('firstnameSignUp')
+      //localStorage.getItem('lastnameSignUp')
+      //localStorage.getItem('mailSignUp')
+      //localStorage.getItem('passwordSignUp')
+      //localStorage.getItem('ageSignUp')
+
+      let parts = localStorage.getItem('ageSignUp').split("-")
+      parts.forEach(part=>{
+        console.log(part);
+        
+      })
+
+      this.getLocation
+      console.log(this.longitude);
+      console.log(this.latitude);
+      
+      
+
+      let temp = await this.http.post<User>("http://130.162.254.211:3000/api/user", {
+        "firstname": localStorage.getItem('firstnameSignUp'),
+        "lastname": localStorage.getItem('lastnameSignUp'),
+        "email": localStorage.getItem('mailSignUp'),
+        "password": localStorage.getItem('passwordSignUp'),
+        "birthdate": new Date(Number(parts[0]),Number(parts[1]),Number(parts[2])),
+        "longitude": 0,
+        "latitude": 0
+      });
+
+      await temp.subscribe(param=>{
+        localStorage.setItem('id',param.id+""),
+         console.log("id:"+param.id);
+          console.log('in await sub');
+      })
+
+
+      
+      //await this.setActivities()
+      this.router.navigate(['mainpage'])
+
+      //this.http.post("http://130.162.254.211:3000/api/user/", {
+        
+        /*"firstname": localStorage.getItem('firstnameSignUp'),
+        "lastname": localStorage.getItem('lastnameSignUp'),
+        "email": localStorage.getItem('mailSignUp'),
+        "password": localStorage.getItem('passwordSignUp'),
+        "birthdate": localStorage.getItem('ageSignUp'),
+        "longitude": 1,
+        "latitude": 1*/
+      //})
+      //this.setActivities()
       //let user = await this.http.get<Activity[]>("http://130.162.254.211:8080/interest/getAllInterests")
       //let user = 
     }
 
     async setActivities(){
+      console.log('set func');
+      
       let mail = localStorage.getItem('mailSignUp')
-      this.user$ = await this.http.get<User>("http://130.162.254.211:8080/user/findbyMail/"+mail)
+      this.user$ = await this.http.get<User>("http://130.162.254.211:3000/user/findbyMail/"+mail)
       let id = 0;
       
       await this.user$.forEach(elem=>{
         console.log(elem);
+
+        
         
         id = elem.id;
         
       })
+
+      
 
       for (let i = 0; i < this.selected.length; i++) {
         const iId = this.selected[i].id;
         console.log(iId);
         console.log(id);
         
-        this.http.post("http://130.162.254.211:8080/interest/add/"+mail , {})
-        await middleware.addInterest(id, iId)
+        let temp = this.http.post("http://130.162.254.211:3000/api/interest", {
+          "userId": id,
+          "interestId":iId
+        });
+        //this.http.post("http://130.162.254.211:3000/interest/add/"+mail , {})
       }
 
       this.router.navigate(['mainpage'])

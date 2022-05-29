@@ -47,9 +47,20 @@
         </ion-select>
       </ion-item>
 
-      <ion-item class="label">
-        <ion-label></ion-label>
-        <ion-input id="age" type="number" placeholder="Age"></ion-input>
+      <ion-item class="label"> 
+        <ion-input [value]="dateValue2"></ion-input>
+        <ion-button fill="clear" id="open-date-input-2">
+          <ion-icon icon="calendar"></ion-icon>
+        </ion-button>
+        <ion-popover trigger="open-date-input-2" show-backdrop="false">
+          <ng-template>
+            <ion-datetime
+              #popoverDatetime2
+              presentation="date"
+              (ionChange)="dateValue2 = formatDate(popoverDatetime2.value)"
+            ></ion-datetime>
+          </ng-template>
+        </ion-popover>
       </ion-item>
 
       <ion-text>

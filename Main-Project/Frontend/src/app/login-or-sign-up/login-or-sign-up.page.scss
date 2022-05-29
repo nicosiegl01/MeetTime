@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap%27');
 ion-content {
     --ion-background-color: #ffffff;
     width:100%;
@@ -14,25 +15,24 @@ ion-content {
     font-family: 'Arial';
 }
 
-h1{
+#logo{
+    margin-top: 20%;
+    width: 45%;
+}
+
+h2{
     text-align: center;
-    font-size:150%;
+    margin-top: 10%;
+    font-size:110%;
+    color: black;
 }
 
 #buttonSignUp{
-    left:0;
-    width: 90%;
-    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
-    border-radius: 25%;
-    --ion-color-danger: #66a8ff;
-}   
-
-#signUpBtn{
-    width: 100%;
-    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
-    border-radius: 25%;
-    --ion-color-danger: #66a8ff;
+    --ion-color-primary-contrast: black;
+    --ion-color-primary: lightsteelblue;
+    --box-shadow: 0px 14px 25px rgba(0, 0, 0, 0.25);
 }
+
 
 #loginBox{
     color:black;
@@ -45,19 +45,9 @@ h1{
 
 #signBox{
     color:black;
-    width:100%;
-    background: white;
-    height:50%;
-    padding:5%;
+    margin-top: 90%;
     text-align: center;
 }
-
-
-
-
-
-
-
 
 
 .label{
@@ -66,12 +56,12 @@ h1{
     margin-top: 2%;
     margin-left: 5%;
     color:gray;
-  
+
     --background:white;
     --border-radius: 0px;
     --border:1px solid black;
   }
-  
+
   .label:hover{
   width: 90%;
   border-radius: 3px;

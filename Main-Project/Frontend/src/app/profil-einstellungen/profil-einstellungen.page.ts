@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { User } from '../User.model';
+import { User } from '../User';
 import { Observable, of } from "rxjs";
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Router } from '@angular/router';
@@ -49,9 +49,9 @@ export class ProfilEinstellungenPage implements OnInit {
     let lastname = (<HTMLTextAreaElement>document.getElementById("lastname")).value;
     let mail;
     let password = (<HTMLTextAreaElement>document.getElementById("firstname")).value;
-    let age = 0//(<HTMLTextAreaElement>document.getElementById("firstname")).value;
+    let age = new Date()//(<HTMLTextAreaElement>document.getElementById("firstname")).value;
     this.user$.forEach(item=>{
-      age = item.age;
+      age = item.birthdate;
       password = item.password;
       if(firstname==""){
         firstname = item.firstname
@@ -60,7 +60,7 @@ export class ProfilEinstellungenPage implements OnInit {
         lastname = item.lastname
       }
       if(mail==""){
-        mail = item.mail;
+        mail = item.email;
       }
     });
     

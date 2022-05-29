@@ -1,6 +1,6 @@
 /*import * as http from 'http';*/
 import { Observable, of } from "rxjs";
-import { User } from '../User.model';
+import { User } from '../User';
 
 export class Middleware {
   createUser(fname,lname,mail,pw,age){
