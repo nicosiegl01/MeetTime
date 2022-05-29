@@ -8,6 +8,7 @@ import { Middleware } from "../middleware/Middleware";
 import { Router } from '@angular/router';
 import { UserService } from '../user.service';
 import { UserToSend } from '../UserToSend';
+import { PostInterest } from '../InterestPostReturn';
 
 let middleware = new Middleware();
 
@@ -187,15 +188,17 @@ return false;
         "latitude": 0
       });
 
+
+      let timeout = await this.delay(500)
       await temp.subscribe(param=>{
         localStorage.setItem('id',param.id+""),
-         console.log("id:"+param.id);
-          console.log('in await sub');
+        console.log("id:"+param.id);
+        console.log('in await sub');
       })
 
 
-      
-      //await this.setActivities()
+      let timeout2 = await this.delay(500)
+      await this.setActivities()
       this.router.navigate(['mainpage'])
 
       //this.http.post("http://130.162.254.211:3000/api/user/", {
@@ -214,35 +217,37 @@ return false;
     }
 
     async setActivities(){
+      
       console.log('set func');
-      
-      let mail = localStorage.getItem('mailSignUp')
-      this.user$ = await this.http.get<User>("http://130.162.254.211:3000/user/findbyMail/"+mail)
-      let id = 0;
-      
-      await this.user$.forEach(elem=>{
-        console.log(elem);
+      let userid = localStorage.getItem('id')
 
-        
-        
-        id = elem.id;
-        
-      })
-
-      
 
       for (let i = 0; i < this.selected.length; i++) {
         const iId = this.selected[i].id;
         console.log(iId);
-        console.log(id);
+        console.log(localStorage.getItem('id'));
+
         
-        let temp = this.http.post("http://130.162.254.211:3000/api/interest", {
-          "userId": id,
-          "interestId":iId
+        let temp = this.http.post<PostInterest>("http://130.162.254.211:3000/api/interest", {
+          "userId": Number(userid),
+          "interestId": Number(iId)
         });
-        //this.http.post("http://130.162.254.211:3000/interest/add/"+mail , {})
+        let timeout = this.delay(1000)
+        temp.subscribe(tempVariable =>{
+          console.log(tempVariable);
+          
+        })
+        
       }
 
       this.router.navigate(['mainpage'])
+    }
+
+    async delay(delayInms) {
+      return new Promise(resolve  => {
+        setTimeout(() => {
+          resolve(2);
+        }, delayInms);
+      });
     }
 }
