@@ -32,13 +32,13 @@ export class ProfilEinstellungenPage implements OnInit {
     let userId = 0;
     console.log(mailAdressOfUser);
     
-    this.user$ = await this.http.get<User>("http://130.162.254.211:8080/user/findbyMail/" + mailAdressOfUser)
+    this.user$ = await this.http.get<User>("http://130.162.254.211:8080/api/user/getByMail/" + mailAdressOfUser)
     await this.user$.forEach(data=>{
       userId = data.id
       console.log(data)
     });
 
-    let temp = await this.http.get<Activity[]>("http://130.162.254.211:8080/user/getUserInterests/" + userId)
+    let temp = await this.http.get<Activity[]>("http://130.162.254.211:8080/api/user/getUserInterests/" + userId)
     this.aktivitys$ = temp
   }
 
