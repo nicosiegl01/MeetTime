@@ -5,7 +5,12 @@ ion-content {
 
 ion-card{
     border:none;
-    min-height: 155vw;
+    min-height: 185vw;
+    max-height: 185vw;
+    box-shadow: none;
+    width:100%;
+    margin-left:-0%;
+    background:white
 }
 
 .buttonMain{
@@ -39,7 +44,7 @@ ion-card{
     margin: 6%;
     border-radius: 15px;
     height: 8%;
-    margin-bottom: 10%;
+    margin-bottom: 5%;
 }
 
 .navitem{

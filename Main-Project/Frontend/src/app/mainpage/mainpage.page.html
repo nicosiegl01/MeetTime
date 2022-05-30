@@ -45,10 +45,10 @@
 
 <ion-tabs>
   <div style="margin-top:15%;" id="buttonBox" >
-  <svg (click)="like()" style="background:white;margin-left: 30%; display: inline-block; margin-bottom: -10.5%; " width="34" height="33" viewBox="0 0 29 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <svg (click)="like()" style="margin-left: 30%; display: inline-block; margin-bottom: -15%; " width="34" height="33" viewBox="0 0 29 30" fill="none" xmlns="http://www.w3.org/2000/svg">
     <path d="M28.1505 9.21048L12.8518 25.0356C11.7189 26.2078 9.88122 26.2078 8.74726 25.0356L0.849952 16.8654C-0.283366 15.6932 -0.283366 13.7919 0.849952 12.6195C1.98348 11.4469 3.82107 11.4469 4.9541 12.6191L10.8002 18.6668L24.0458 4.96437C25.1793 3.79175 27.017 3.79264 28.1501 4.96437C29.2832 6.13677 29.2832 8.03741 28.1505 9.21048Z" fill="#D4E0D6"/>
   </svg>
-  <svg (click)="dislike()" style="background:white;margin-left: 50%; margin-bottom: 5%; display: inline-block;" width="25" height="26" viewBox="0 0 25 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <svg (click)="dislike()" style="margin-left: 50%; margin-bottom: 0%; display: inline-block;" width="25" height="26" viewBox="0 0 25 26" fill="none" xmlns="http://www.w3.org/2000/svg">
     <path d="M2.36992 25.8372C1.75699 25.8742 1.1542 25.6623 0.688649 25.2461C-0.229499 24.2856 -0.229499 22.7342 0.688649 21.7736L20.7931 0.864943C21.748 -0.0643848 23.2465 -0.012724 24.1401 0.980429C24.9481 1.87853 24.9952 3.25894 24.2504 4.2143L4.02748 25.2461C3.56794 25.6563 2.97482 25.8678 2.36992 25.8372Z" fill="#E0D4D4"/>
     <path d="M22.4507 25.8372C21.8295 25.8344 21.2341 25.578 20.7931 25.123L0.688573 4.21421C-0.162044 3.18116 -0.0463983 1.62647 0.946924 0.741745C1.83349 -0.0478465 3.141 -0.0478465 4.02748 0.741745L24.2504 21.6504C25.2051 22.58 25.2545 24.1385 24.3606 25.1314C24.3251 25.1709 24.2883 25.2091 24.2504 25.2461C23.7552 25.6939 23.1035 25.9079 22.4507 25.8372Z" fill="#E0D4D4"/>
     </svg>
@@ -58,7 +58,7 @@
     
     
     
-    <div class="navitem">
+    <div class="navitem" (click)="switchToMapPage()">
       <ion-icon name="map-outline"></ion-icon>
     </div>
     <div class="navitem">

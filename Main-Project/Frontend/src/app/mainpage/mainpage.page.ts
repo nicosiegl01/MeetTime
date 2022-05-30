@@ -34,6 +34,10 @@ export class MainpagePage implements OnInit,AfterViewInit{
     this.router.navigate(['profil-einstellungen']);
   }
 
+  switchToMapPage(){
+    this.router.navigate(['map']);
+  }
+
   async ngAfterViewInit(){
     let x = await this.delay(500);
     console.log(this.cards);
