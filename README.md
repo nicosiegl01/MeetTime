@@ -24,9 +24,9 @@ Partymaster soll in dieser schweren Zeit Personen verbinden. Egal ob schüchtern
 - Elias Ganglberger
 - Maximillian Eder
 
-## Umsetzung
+## Umsetzung / Programme
 - **Ionic** 
-- Visual Studio Code als Programmierumgebung
+- Visual Studio Code als Programmierumgebung (Frontend/Backend)
 - Figma für die Frontend Gestaltung
 - Jira für das Time-Management
 
