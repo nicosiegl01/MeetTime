@@ -1,8 +1,9 @@
-# **PartyMaster / Meettime**
+# **Meettime**
 
 ## Projektbeschreibung
 
-Partymaster soll in dieser schweren Zeit Personen verbinden. Egal ob schüchtern, älter, jünger, extrovertiert, Arbeiter, Schüler, usw. Partymaster ist für alle. Einfach mit neuen Leuten matchen, neue Freundschaften schließen und mehr Spaß haben mit deinem Hobby.
+Meettime soll in dieser schweren Zeit Personen verbinden. Egal ob schüchtern, älter, jünger, extrovertiert, Arbeiter, Schüler, usw. Meettime ist für alle. Einfach mit neuen Leuten matchen, neue Freundschaften schließen und mehr Spaß haben mit deinem Hobby.
+Auf der Hauptseite werden einem andere potenzielle neue Freunde angezeigt, welche man liken aber auch disliken kann. Sobald sich zwei User gegenseitig liken haben sie ein Match und können miteinander in Kontakt treten. Auf der Map werden einem andere User angezeigt mit welchen man sich verabreden kann.
 
 ## Projektumfang
 - Sign-In
