@@ -14,19 +14,19 @@ Partymaster soll in dieser schweren Zeit Personen verbinden. Egal ob schüchtern
 - Modernes Frontend
 - Bugfreies Backend
 - Hobbykarte
-- Hauptseite (wo man swiped)
-- Chat
+- Hauptseite (wo man liken kann)
+- Chatfunktion
 
 ## Projektbeteiligte
-- Nico Siegl
-- Manuel Neidhart
-- Mia Mandel
-- Elias Ganglberger
-- Maximillian Eder
+- Nico Siegl        (Frontend)
+- Manuel Neidhart   (Frontend)
+- Mia Mandel        (Design/Frontend)
+- Elias Ganglberger (Frontend)
+- Maximillian Eder  (Backend)
 
 ## Umsetzung / Programme
 - **Ionic** 
 - Visual Studio Code als Programmierumgebung (Frontend/Backend)
 - Figma für die Frontend Gestaltung
-- Jira für das Time-Management
+- Jira für das Time-Management (https://meettime.atlassian.net/jira/software/projects/MEET/boards/1)
 
